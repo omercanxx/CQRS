@@ -1,0 +1,15 @@
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\CQRS.Infrastructure.deps.json
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\CQRS.Infrastructure.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\ref\CQRS.Infrastructure.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\CQRS.Infrastructure.pdb
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\CQRS.Core.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\bin\Debug\net5.0\CQRS.Core.pdb
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.AssemblyInfo.cs
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.csproj.CopyComplete
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\ref\CQRS.Infrastructure.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Infrastructure\obj\Debug\net5.0\CQRS.Infrastructure.pdb
