@@ -11,11 +11,8 @@ namespace CQRS.Infrastructure
         {
 
         }
-
-        public async Task<int> SaveChanges()
-        {
-            return await base.SaveChangesAsync();
-        }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }

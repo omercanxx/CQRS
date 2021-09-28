@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.Requests.CourseRequests;
-using CQRS.Domain.Commands.CourseCommand;
+using CQRS.Domain.Commands.CourseCommands;
 using CQRS.Domain.Queries.CourseQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;

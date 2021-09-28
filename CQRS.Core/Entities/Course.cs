@@ -15,6 +15,7 @@ namespace CQRS.Core.Entities
         }
         public string Title { get; protected set; }
         public decimal Price { get; protected set; }
+        public virtual ICollection<Order> Orders { get; protected set; }
 
         public void UpdateTitle(string title)
         {
