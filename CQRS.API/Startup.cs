@@ -44,6 +44,9 @@ namespace CQRS.API
         {
 
             services.AddControllers();
+            
+            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CQRS.API", Version = "v1" });
@@ -55,6 +58,8 @@ namespace CQRS.API
             services.AddAutoMapper(typeof(MapProfile));
 
             services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             #region Commands
             services.AddScoped<IRequestHandler<CourseCreateCommand, Guid>, CourseCommandHandler>();
@@ -75,6 +80,7 @@ namespace CQRS.API
             services.AddScoped<IRequestHandler<GetUsersQuery, List<UserDto>>, UserQueryHandler>();
             services.AddScoped<IRequestHandler<GetUserDetailQuery, UserDto>, UserQueryHandler>();
             #endregion
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

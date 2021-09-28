@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,18 @@ namespace CQRS.Application.Requests.OrderRequests
 {
     public class OrderCreateRequest
     {
-        [DisplayName("İsim")]
-        [Required]
-        public string Title { get; set; }
-        [DisplayName("Fiyat")]
-        [Required]
+        public Guid UserId { get; set; }
+        public Guid CourseId { get; set; }
         public decimal Price { get; set; }
+
+        public class OrderCreateValidator : AbstractValidator<OrderCreateRequest>
+        {
+            public OrderCreateValidator()
+            {
+                RuleFor(c => c.UserId).NotEmpty().WithMessage("Lütfen kullanıcı id giriniz.");
+                RuleFor(c => c.CourseId).NotEmpty().WithMessage("Lütfen kurs id giriniz.");
+                RuleFor(c => c.Price).NotEmpty().NotNull().WithMessage("Lütfen fiyat giriniz.");
+            }
+        }
     }
 }

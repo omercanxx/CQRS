@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,15 @@ namespace CQRS.Application.Requests.CourseRequests
 {
     public class CourseCreateRequest
     {
-        [DisplayName("İsim")]
-        [Required]
         public string Title { get; set; }
-        [DisplayName("Fiyat")]
-        [Required]
         public decimal Price { get; set; }
+        public class CourseCreateValidator : AbstractValidator<CourseCreateRequest>
+        {
+            public CourseCreateValidator()
+            {
+                RuleFor(c => c.Title).NotEmpty().WithMessage("Lütfen isim giriniz.");
+                RuleFor(c => c.Price).NotEmpty().NotNull().WithMessage("Lütfen fiyat giriniz.");
+            }
+        }
     }
 }

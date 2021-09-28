@@ -69,3 +69,6 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\obj\Debug\net5.0\ref\CQRS.API.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.pdb
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.genruntimeconfig.cache
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll

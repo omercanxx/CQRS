@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static CQRS.Application.Requests.CourseRequests.CourseCreateRequest;
 
 namespace CQRS.API.Controllers
 {
@@ -26,7 +27,13 @@ namespace CQRS.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse([FromBody] CourseCreateRequest request)
         {
-            return Ok(await Mediator.Send(_mapper.Map<CourseCreateCommand>(request)));
+            var validator = new CourseCreateValidator();
+
+            var result = validator.Validate(request);
+            if(result.IsValid)
+                return Ok(await Mediator.Send(_mapper.Map<CourseCreateCommand>(request)));
+
+            return BadRequest(result.Errors);
         }
         [HttpPut]
         public async Task<IActionResult> UpdateCourse([FromBody] CourseUpdateRequest request)
