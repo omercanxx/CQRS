@@ -8,7 +8,7 @@ namespace CQRS.Core.Entities
 {
     public abstract class BaseEntity
     {
-
+        //Sınıf hiyerarşisinde base class tanımlamak için BaseEntity adında abstract class oluşturulmuştur. Id, IsActive ve CreatedOn alanlarına sahiptir. Delete işlemi ile veri silme yerine isActive alanı false set edilecektir. CreatedOn ise verinin oluşturulduğu tarihi tutmak amaçlı kullanılmıştır.
         public BaseEntity()
         {
             Id = Guid.NewGuid();

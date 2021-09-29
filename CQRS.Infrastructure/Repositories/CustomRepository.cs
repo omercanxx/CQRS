@@ -38,7 +38,10 @@ namespace CQRS.Infrastructure.Repositories
         {
             return await _dbSet.SingleOrDefaultAsync(predicate);
         }
-
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
         public void Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;

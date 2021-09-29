@@ -5,6 +5,7 @@ using CQRS.Domain.Queries.CourseQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,13 @@ namespace CQRS.API.Controllers
         public async Task<IActionResult> CreateCourse([FromBody] CourseCreateRequest request)
         {
             var validator = new CourseCreateValidator();
-
             var result = validator.Validate(request);
             if(result.IsValid)
-                return Ok(await Mediator.Send(_mapper.Map<CourseCreateCommand>(request)));
+            {
+                var id = await Mediator.Send(_mapper.Map<CourseCreateCommand>(request));
+                Log.Information($"{id} li kurs eklendi");
+                return Ok();
+            }
 
             return BadRequest(result.Errors);
         }

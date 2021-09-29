@@ -1,4 +1,5 @@
 ﻿using CQRS.Core.Entities;
+using CQRS.Core.Interfaces;
 using CQRS.Infrastructure;
 using MediatR;
 using System;
@@ -13,31 +14,31 @@ namespace CQRS.Domain.Commands.CourseCommands
     public class CourseCommandHandler : IRequestHandler<CourseCreateCommand, Guid>,
                                         IRequestHandler<CourseUpdateCommand, Guid>
     {
-        private readonly AppDbContext _context;
-        public CourseCommandHandler(AppDbContext context)
+        private readonly ICourseRepository _courseRepository;
+        public CourseCommandHandler(ICourseRepository courseRepository)
         {
-            _context = context;
+            _courseRepository = courseRepository;
         }
         public async Task<Guid> Handle(CourseCreateCommand command, CancellationToken cancellationToken)
         {
             Course course = new Course(command.Title, command.Price);
 
-            _context.Courses.Add(course);
-            await _context.SaveChangesAsync();
+            await _courseRepository.AddAsync(course);
+            await _courseRepository.SaveChangesAsync();
 
             return course.Id;
         }
 
         public async Task<Guid> Handle(CourseUpdateCommand command, CancellationToken cancellationToken)
         {
-            var dbCourse = await _context.Courses.FindAsync(command.Id);
+            var dbCourse = await _courseRepository.GetByIdAsync(command.Id);
 
             dbCourse.UpdatePrice(command.Price);
             dbCourse.UpdateTitle(command.Title);
-            _context.Courses.Update(dbCourse);
+            _courseRepository.Update(dbCourse);
 
 
-            await _context.SaveChangesAsync();
+            await _courseRepository.SaveChangesAsync();
             return dbCourse.Id;
         }
     }

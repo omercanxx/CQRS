@@ -72,3 +72,8 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\AutoMapper.Extens
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\FluentValidation.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Azure.Services.AppAuthentication.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.IdentityModel.Clients.ActiveDirectory.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.Sinks.MSSqlServer.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.Sinks.PeriodicBatching.dll

@@ -17,5 +17,6 @@ namespace CQRS.Core.Interfaces
         void Deactivate(TEntity entity);
         void Activate(TEntity entity);
         void Update(TEntity entity);
+        Task SaveChangesAsync();
     }
 }
