@@ -51,7 +51,7 @@ namespace CQRS.API
             Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer(Configuration.GetConnectionString("DevConnection"), "Logs").CreateLogger();
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            //Configurations içerisine extension yazılarak proje daha modüler bir yapı haline getiriliyor.
+            //DependencyInjection ve Automapper gibi yapılar configurations içerisine extension yazılarak proje daha modüler bir yapı haline getiriliyor.
             services.AddDependencyInjectionSetup();
             services.AddAutoMapperSetup();
 

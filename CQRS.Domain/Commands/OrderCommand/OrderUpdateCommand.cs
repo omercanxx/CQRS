@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CQRS.Core;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Commands.OrderCommand
 {
-    public class OrderUpdateCommand : IRequest<Guid>
+    public class OrderUpdateCommand : IRequest<CommandResult>
     {
         public OrderUpdateCommand(Guid id, Guid userId, Guid courseId, decimal price)
         {

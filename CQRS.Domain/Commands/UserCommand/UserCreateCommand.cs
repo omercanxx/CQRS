@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CQRS.Core;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Commands.UserCommand
 {
-    public class UserCreateCommand : IRequest<Guid>
+    public class UserCreateCommand : IRequest<CommandResult>
     {
         public UserCreateCommand(string name, string surname, string email, string password, DateTime birthdate)
         {

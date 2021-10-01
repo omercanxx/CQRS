@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Core.Interfaces
 {
+    //Kod tekrarını azaltmak amacıyla custom repository kullanılmıştır.
     public interface ICustomRepository<TEntity> where TEntity : class
     {
         Task<TEntity> GetByIdAsync(Guid id);

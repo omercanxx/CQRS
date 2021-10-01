@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CQRS.Core;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace CQRS.Domain.Commands.CourseCommands
 {
-    public class CourseCreateCommand : IRequest<Guid>
+    public class CourseCreateCommand : IRequest<CommandResult>
     {
         public CourseCreateCommand(string title, decimal price)
         {

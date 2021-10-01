@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CQRS.Core;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Commands.UserCommand
 {
-    public class UserUpdateCommand : IRequest<Guid>
+    public class UserUpdateCommand : IRequest<CommandResult>
     {
         public UserUpdateCommand(Guid id, string name, string surname, string email, string password, DateTime birthdate)
         {

@@ -1,4 +1,5 @@
-﻿using CQRS.Core.Interfaces;
+﻿using CQRS.Core;
+using CQRS.Core.Interfaces;
 using CQRS.Domain.Commands.CourseCommands;
 using CQRS.Domain.Commands.OrderCommand;
 using CQRS.Domain.Commands.UserCommand;
@@ -33,14 +34,17 @@ namespace CQRS.Application
 
             #region Commands
             //Command-CommandHandler Dependecy Injection
-            services.AddScoped<IRequestHandler<CourseCreateCommand, Guid>, CourseCommandHandler>();
-            services.AddScoped<IRequestHandler<CourseUpdateCommand, Guid>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<CourseCreateCommand, CommandResult>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<CourseUpdateCommand, CommandResult>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<CourseDeleteCommand, CommandResult>, CourseCommandHandler>();
 
-            services.AddScoped<IRequestHandler<OrderCreateCommand, Guid>, OrderCommandHandler>();
-            services.AddScoped<IRequestHandler<OrderUpdateCommand, Guid>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<OrderCreateCommand, CommandResult>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<OrderUpdateCommand, CommandResult>, OrderCommandHandler>();
+            services.AddScoped<IRequestHandler<OrderDeleteCommand, CommandResult>, OrderCommandHandler>();
 
-            services.AddScoped<IRequestHandler<UserCreateCommand, Guid>, UserCommandHandler>();
-            services.AddScoped<IRequestHandler<UserUpdateCommand, Guid>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<UserCreateCommand, CommandResult>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<UserUpdateCommand, CommandResult>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<UserDeleteCommand, CommandResult>, UserCommandHandler>();
             #endregion
 
             #region Queries

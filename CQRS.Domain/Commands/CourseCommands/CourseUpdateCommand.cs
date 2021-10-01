@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using CQRS.Core;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Commands.CourseCommands
 {
-    public class CourseUpdateCommand : IRequest<Guid>
+    public class CourseUpdateCommand : IRequest<CommandResult>
     {
         public CourseUpdateCommand(Guid id, string title, decimal price)
         {

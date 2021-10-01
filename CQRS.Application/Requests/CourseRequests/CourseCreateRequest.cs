@@ -18,7 +18,7 @@ namespace CQRS.Application.Requests.CourseRequests
             public CourseCreateValidator()
             {
                 RuleFor(c => c.Title).NotEmpty().WithMessage("Lütfen isim giriniz.");
-                RuleFor(c => c.Price).NotEmpty().NotNull().WithMessage("Lütfen fiyat giriniz.");
+                RuleFor(c => c.Price).NotEmpty().WithMessage("Lütfen fiyat giriniz.");
             }
         }
     }
