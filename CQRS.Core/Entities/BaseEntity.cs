@@ -16,9 +16,9 @@ namespace CQRS.Core.Entities
             CreatedOn = DateTime.Now;
         }
 
-        public Guid Id { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public Guid Id { get; protected set; }
+        public bool IsActive { get; protected set; }
+        public DateTime CreatedOn { get; protected set; }
 
     }
 }

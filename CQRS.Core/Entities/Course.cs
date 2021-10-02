@@ -13,6 +13,13 @@ namespace CQRS.Core.Entities
             Title = title;
             Price = price;
         }
+        // For Unit Test
+        public Course(Guid id, string title, decimal price)
+        {
+            Id = id;
+            Title = title;
+            Price = price;
+        }
         public string Title { get; protected set; }
         public decimal Price { get; protected set; }
         public virtual ICollection<Order> Orders { get; protected set; }
@@ -24,6 +31,10 @@ namespace CQRS.Core.Entities
         public void UpdatePrice(decimal price)
         {
             Price = price;
+        }
+        public void UpdateIsActive(bool isActive)
+        {
+            IsActive = isActive;
         }
     }
 }
