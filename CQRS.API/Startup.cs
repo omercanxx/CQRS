@@ -32,13 +32,11 @@ namespace CQRS.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         [Obsolete]
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
             
-            
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CQRS.API", Version = "v1" });
@@ -49,6 +47,7 @@ namespace CQRS.API
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer(Configuration.GetConnectionString("DevConnection"), "Logs").CreateLogger();
+
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             //DependencyInjection ve Automapper gibi yapılar configurations içerisine extension yazılarak proje daha modüler bir yapı haline getiriliyor.
@@ -57,8 +56,9 @@ namespace CQRS.API
 
         }
 
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {

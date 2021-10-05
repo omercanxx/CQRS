@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Core", "CQRS.Core\CQRS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.Infrastructure", "CQRS.Infrastructure\CQRS.Infrastructure.csproj", "{72164527-1740-4E7A-97F4-157978D8A5E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.RepositoryTest", "RepositoryTest\CQRS.RepositoryTest.csproj", "{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CQRS.RepositoryTest", "RepositoryTest\CQRS.RepositoryTest.csproj", "{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest", "IntegrationTest\IntegrationTest.csproj", "{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{D17A79D3-FC35-4AD2-8059-DF1D9647C2DC} = {E7DDD269-47CB-4B2B-BF54-B67A8E554811}
 		{72164527-1740-4E7A-97F4-157978D8A5E5} = {753A8544-BA55-419C-9AD2-3788BF88729A}
 		{8FDCEB2A-C073-4B4F-8259-A91CD10BF8A9} = {753A8544-BA55-419C-9AD2-3788BF88729A}
+		{A1E285D8-ADCE-416B-ADD8-B0651EBB7D01} = {5FD872EF-069B-44EB-BE7A-072EDBD261DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2702B6E5-83EC-4A22-9646-EA744203F531}
