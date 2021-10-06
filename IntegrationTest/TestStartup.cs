@@ -28,11 +28,8 @@ namespace IntegrationTest
 
             services.AddControllers();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
             services.AddDependencyInjectionSetup();
-            services.AddAutoMapperSetup();
-
+            
             //Kirli datayı engellemek amaçlı inmemory kullanılıyor.
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("CQRSTestDb"));
         }

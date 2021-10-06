@@ -11,5 +11,7 @@ namespace CQRS.Domain.Dtos.CourseDtos
         public Guid Id { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
+        //Yeni eklenen kurs testi için eklenmiştir.
+        public DateTime CreatedOn { get; set; }
     }
 }

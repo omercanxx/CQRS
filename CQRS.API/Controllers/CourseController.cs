@@ -37,7 +37,7 @@ namespace CQRS.API.Controllers
                 //Birden fazla constructora sahip olan commandresult Core katmanında tanımlanmıştır.
                 var commandResult = await Mediator.Send(_mapper.Map<CourseCreateCommand>(request));
                 Log.Information($"{commandResult.Title} isimli kurs eklendi");
-                return Ok();
+                return Ok(commandResult.Title);
             }
             //Birden fazla hata mesajı geldiğinde arka arkaya loglamak için foreach kullanılıyor.
             foreach(var item in result.Errors)
@@ -57,7 +57,7 @@ namespace CQRS.API.Controllers
             {
                 var commandResult = await Mediator.Send(_mapper.Map<CourseUpdateCommand>(request));
                 Log.Information($"{commandResult.Title} isimli kurs güncellenmiştir.");
-                return Ok();
+                return Ok(commandResult.Title);
             }
             foreach (var item in result.Errors)
             {
