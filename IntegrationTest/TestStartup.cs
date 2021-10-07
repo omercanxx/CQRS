@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +28,16 @@ namespace IntegrationTest
         {
 
             services.AddControllers();
-
-            services.AddDependencyInjectionSetup();
             
             //Kirli datayı engellemek amaçlı inmemory kullanılıyor.
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("CQRSTestDb"));
+
+            Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Database=Bootcamp; Integrated Security=True", "Logs").CreateLogger();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddDependencyInjectionSetup();
+            services.AddAutoMapperSetup();
         }
         public override void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
