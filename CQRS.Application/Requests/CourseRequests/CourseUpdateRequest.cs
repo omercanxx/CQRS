@@ -12,6 +12,7 @@ namespace CQRS.Application.Requests.CourseRequests
     public class CourseUpdateRequest
     {
         public Guid Id { get; set; }
+        public Guid? CampaignId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public class CourseUpdateValidator : AbstractValidator<CourseUpdateRequest>

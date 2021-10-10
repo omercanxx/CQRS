@@ -39,11 +39,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Name} isimli kullanıcı eklenmiştir.");
                 return Ok();
             }
-            foreach (var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+
             return BadRequest(errorMessage);
         }
 
@@ -59,11 +55,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Name} isili kullanıcı güncellenmiştir.");
                 return Ok();
             }
-            foreach (var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+
             return BadRequest(errorMessage);
         }
 

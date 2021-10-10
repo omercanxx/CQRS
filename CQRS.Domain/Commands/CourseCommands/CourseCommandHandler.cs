@@ -24,7 +24,7 @@ namespace CQRS.Domain.Commands.CourseCommands
         }
         public async Task<CommandResult> Handle(CourseCreateCommand command, CancellationToken cancellationToken)
         {
-            Course course = new Course(command.Title, command.Price);
+            Course course = new Course(command.CampaignId, command.Title, command.Price);
 
             await _courseRepository.AddAsync(course);
             await _courseRepository.SaveChangesAsync();
@@ -37,8 +37,10 @@ namespace CQRS.Domain.Commands.CourseCommands
         {
             var dbCourse = await _courseRepository.GetByIdAsync(command.Id);
 
+            dbCourse.UpdateCampaign(command.CampaignId);
             dbCourse.UpdatePrice(command.Price);
             dbCourse.UpdateTitle(command.Title);
+
             _courseRepository.Update(dbCourse);
 
 
@@ -52,6 +54,7 @@ namespace CQRS.Domain.Commands.CourseCommands
             var dbCourse = await _courseRepository.GetByIdAsync(command.Id);
 
             _courseRepository.Deactivate(dbCourse);
+            await _courseRepository.SaveChangesAsync();
 
             return new CommandResult(dbCourse.Id, dbCourse.Title);
         }

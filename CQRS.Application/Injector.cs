@@ -1,11 +1,14 @@
 ﻿using CQRS.Core;
 using CQRS.Core.Interfaces;
+using CQRS.Domain.Commands.CampaignCommands;
 using CQRS.Domain.Commands.CourseCommands;
-using CQRS.Domain.Commands.OrderCommand;
+using CQRS.Domain.Commands.OrderCommands;
 using CQRS.Domain.Commands.UserCommand;
+using CQRS.Domain.Dtos.CampaignDtos;
 using CQRS.Domain.Dtos.CourseDtos;
 using CQRS.Domain.Dtos.OrderDtos;
 using CQRS.Domain.Dtos.UserDtos;
+using CQRS.Domain.Queries.CampaignQueries;
 using CQRS.Domain.Queries.CourseQueries;
 using CQRS.Domain.Queries.OrderQueries;
 using CQRS.Domain.Queries.UserQueries;
@@ -27,13 +30,18 @@ namespace CQRS.Application
             #region Repositories
             //Repository Dependency Injection
             services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));
+            services.AddScoped<ICampaignRepository, CampaignRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ICourseRepository, CourseRepository>();
             #endregion
 
             #region Commands
             //Command-CommandHandler Dependecy Injection
+            services.AddScoped<IRequestHandler<CampaignCreateCommand, CommandResult>, CampaignCommandHandler>();
+            services.AddScoped<IRequestHandler<CampaignUpdateCommand, CommandResult>, CampaignCommandHandler>();
+            services.AddScoped<IRequestHandler<CampaignDeleteCommand, CommandResult>, CampaignCommandHandler>();
+
             services.AddScoped<IRequestHandler<CourseCreateCommand, CommandResult>, CourseCommandHandler>();
             services.AddScoped<IRequestHandler<CourseUpdateCommand, CommandResult>, CourseCommandHandler>();
             services.AddScoped<IRequestHandler<CourseDeleteCommand, CommandResult>, CourseCommandHandler>();
@@ -49,10 +57,16 @@ namespace CQRS.Application
 
             #region Queries
             //Query-QueryHandler Dependecy Injection
+
+            services.AddScoped<IRequestHandler<GetCampaignsQuery, List<CampaignDto>>, CampaignQueryHandler>();
+            services.AddScoped<IRequestHandler<GetCampaignDetailQuery, CampaignDto>, CampaignQueryHandler>();
+
             services.AddScoped<IRequestHandler<GetCoursesQuery, List<CourseDto>>, CourseQueryHandler>();
             services.AddScoped<IRequestHandler<GetCourseDetailQuery, CourseDto>, CourseQueryHandler>();
+
             services.AddScoped<IRequestHandler<GetOrdersQuery, List<OrderDto>>, OrderQueryHandler>();
             services.AddScoped<IRequestHandler<GetOrderDetailQuery, OrderDto>, OrderQueryHandler>();
+            
             services.AddScoped<IRequestHandler<GetUsersQuery, List<UserDto>>, UserQueryHandler>();
             services.AddScoped<IRequestHandler<GetUserDetailQuery, UserDto>, UserQueryHandler>();
             #endregion

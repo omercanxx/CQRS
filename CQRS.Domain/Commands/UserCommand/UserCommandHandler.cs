@@ -54,6 +54,7 @@ namespace CQRS.Domain.Commands.UserCommand
             var dbUser = await _userRepository.GetByIdAsync(command.Id);
 
             _userRepository.Deactivate(dbUser);
+            await _userRepository.SaveChangesAsync();
 
             return new CommandResult(dbUser.Fullname);
         }

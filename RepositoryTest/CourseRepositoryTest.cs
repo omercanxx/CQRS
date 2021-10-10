@@ -4,6 +4,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -19,16 +20,16 @@ namespace CQRS.RepositoryTest
 
             for (int i = 1; i < 10; i++)
             {
-                courses.Add(new Course(Guid.Parse($"a4fd1a70-05c1-40ae-be16-15ee28ebca6{i}"), $"{i}.Kurs", (i * 2) + 10));
+                courses.Add(new Course(Guid.Parse($"a4fd1a70-05c1-40ae-be16-15ee28ebca6{i}"), null ,$"{i}.Kurs", (i * 2) + 10));
             }
         }
         [Fact]
-        public async void GetAllAsync()
+        public async Task GetAllAsync()
         {
             Mock<ICourseRepository> mockCourseRepository = new Mock<ICourseRepository>();
 
             // return a course by Id
-            mockCourseRepository.Setup(mr => mr.GetAllAsync()).Returns(async() => courses);
+            mockCourseRepository.Setup(mr => mr.GetAllAsync()).Returns(async () => courses);
 
             var courseRepository = mockCourseRepository.Object;
             var dbCourses = await courseRepository.GetAllAsync();
@@ -36,7 +37,7 @@ namespace CQRS.RepositoryTest
             Assert.Equal(courses.Count, dbCourses.Count());
         }
         [Fact]
-        public async void GetByIdAsync()
+        public async Task GetByIdAsync()
         {
             Mock<ICourseRepository> mockCourseRepository = new Mock<ICourseRepository>();
 
@@ -51,16 +52,17 @@ namespace CQRS.RepositoryTest
 
             //Different DateTime
             //Assert.Equal(new Course(Guid.Parse($"a4fd1a70-05c1-40ae-be16-15ee28ebca61"), "1.Kurs", 12), dbCourse);
+
             Assert.Equal("1.Kurs", dbCourse.Title);
             Assert.Equal(12, dbCourse.Price);
 
         }
         [Fact]
-        public async void AddAsync()
+        public async Task AddAsync()
         {
             Mock<ICourseRepository> mockCourseRepository = new Mock<ICourseRepository>();
 
-            var course = new Course(newId, "deneme", 100);
+            var course = new Course(newId, null, "deneme", 100);
             mockCourseRepository.Setup(mr => mr.AddAsync(
                 It.IsAny<Course>())).Returns(async (Course course) =>
                 {
@@ -78,7 +80,7 @@ namespace CQRS.RepositoryTest
         public void Delete()
         {
             Mock<ICourseRepository> mockCourseRepository = new Mock<ICourseRepository>();
-            var course = new Course(testId, "1.Kurs", 12);
+            var course = new Course(testId, null, "1.Kurs", 12);
 
 
             mockCourseRepository.Setup(mr => mr.AddAsync(
@@ -95,12 +97,13 @@ namespace CQRS.RepositoryTest
             Assert.True((course.IsActive == false) ? false : true);
 
         }
-        /*
-         * ModifiedOn alanı eklenmeli, Update sırasında bu alan güncellenmeli. Bu işlemlerden sonra sağlıklı test yapılabilir.
+
         [Fact]
-        public void Update()
+        public async Task Update()
         {
             Mock<ICourseRepository> mockCourseRepository = new Mock<ICourseRepository>();
+            var course = new Course(testId, null, "Yenilenmiş 1.Kurs", 15);
+            var updateDate = DateTime.Now;
 
             mockCourseRepository.Setup(mr => mr.Update(
                 It.IsAny<Course>())).Callback((Course course) =>
@@ -108,8 +111,32 @@ namespace CQRS.RepositoryTest
                     var dbCourse = courses.Where(x => x.Id == course.Id).SingleOrDefault();
                     dbCourse.UpdatePrice(course.Price);
                     dbCourse.UpdateTitle(course.Title);
+                    TrySetProperty(dbCourse, "ModifiedOn", updateDate);
                 }
                 );
-        }*/
+            mockCourseRepository.Setup(mr => mr.GetByIdAsync(
+                It.IsAny<Guid>())).Returns(async (Guid id) => courses.SingleOrDefault(x => x.Id == id));
+
+            var courseRepository = mockCourseRepository.Object;
+            courseRepository.Update(course);
+
+            var dbCourse = await courseRepository.GetByIdAsync(course.Id);
+
+
+            Assert.Equal(course.Title, dbCourse.Title);
+            Assert.Equal(course.Price, dbCourse.Price);
+            Assert.Equal(updateDate, dbCourse.ModifiedOn);
+
+        }
+        private bool TrySetProperty(object obj, string property, object value)
+        {
+            var prop = obj.GetType().GetProperty(property, BindingFlags.Public | BindingFlags.Instance);
+            if (prop != null && prop.CanWrite)
+            {
+                prop.SetValue(obj, value, null);
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.Requests.OrderRequests;
-using CQRS.Domain.Commands.OrderCommand;
+using CQRS.Domain.Commands.OrderCommands;
 using CQRS.Domain.Queries.OrderQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -38,11 +38,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Id} id'li kurs eklenmiştir.");
                 return Ok();
             }
-            foreach (var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+
             return BadRequest(errorMessage);
         }
         [HttpPut]
@@ -57,11 +53,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Id} id'li kurs güncellenmiştir.");
                 return Ok();
             }
-            foreach (var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+            
             return BadRequest(errorMessage);
         }
         [HttpGet("{id}")]

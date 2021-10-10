@@ -39,12 +39,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Title} isimli kurs eklendi");
                 return Ok(commandResult.Title);
             }
-            //Birden fazla hata mesajı geldiğinde arka arkaya loglamak için foreach kullanılıyor.
-            foreach(var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+            
             return BadRequest(errorMessage);
         }
         [HttpPut]
@@ -59,11 +54,7 @@ namespace CQRS.API.Controllers
                 Log.Information($"{commandResult.Title} isimli kurs güncellenmiştir.");
                 return Ok(commandResult.Title);
             }
-            foreach (var item in result.Errors)
-            {
-                errorMessage += $" {item.ErrorMessage}";
-            }
-            Log.Information(errorMessage);
+            
             return BadRequest(errorMessage);
         }
         [HttpGet("{id}")]

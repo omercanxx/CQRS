@@ -8,22 +8,30 @@ namespace CQRS.Core.Entities
 {
     public class Course : BaseEntity
     {
-        public Course(string title, decimal price)
+        public Course(Guid? campaignId, string title, decimal price)
         {
+            CampaignId = campaignId;
             Title = title;
             Price = price;
         }
         // For Unit Test
-        public Course(Guid id, string title, decimal price)
+        public Course(Guid id, Guid? campaignId, string title, decimal price)
         {
             Id = id;
+            CampaignId = campaignId;
             Title = title;
             Price = price;
         }
+        public Guid? CampaignId { get; protected set; }
         public string Title { get; protected set; }
         public decimal Price { get; protected set; }
         public virtual ICollection<Order> Orders { get; protected set; }
+        public virtual Campaign Campaign{ get; protected set; }
 
+        public void UpdateCampaign(Guid? campaignId)
+        {
+            CampaignId = campaignId;
+        }
         public void UpdateTitle(string title)
         {
             Title = title;

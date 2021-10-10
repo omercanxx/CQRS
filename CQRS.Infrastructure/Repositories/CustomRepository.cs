@@ -44,6 +44,7 @@ namespace CQRS.Infrastructure.Repositories
         }
         public void Update(TEntity entity)
         {
+            TrySetProperty(entity, "ModifiedOn", DateTime.Now);
             _context.Entry(entity).State = EntityState.Modified;
         }
 

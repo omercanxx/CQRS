@@ -11,12 +11,14 @@ namespace CQRS.Domain.Commands.CourseCommands
 {
     public class CourseCreateCommand : IRequest<CommandResult>
     {
-        public CourseCreateCommand(string title, decimal price)
+        public CourseCreateCommand(Guid? campaignId, string title, decimal price)
         {
+            CampaignId = campaignId;
             Title = title;
             Price = price;
         }
 
+        public Guid? CampaignId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
     }

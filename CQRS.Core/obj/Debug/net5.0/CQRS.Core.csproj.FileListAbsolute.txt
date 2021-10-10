@@ -2,7 +2,6 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\bin\Debug\net5.0\CQRS.Core.deps.j
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\bin\Debug\net5.0\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\bin\Debug\net5.0\ref\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\bin\Debug\net5.0\CQRS.Core.pdb
-C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.csproj.AssemblyReference.cache
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.AssemblyInfoInputs.cache
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.AssemblyInfo.cs
@@ -10,3 +9,4 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.csproj
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\ref\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.pdb
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.csproj.AssemblyReference.cache
