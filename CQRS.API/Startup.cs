@@ -1,6 +1,7 @@
 ﻿using CQRS.API.Configurations;
 using CQRS.Application.AutoMapper;
 using CQRS.Infrastructure;
+using CQRS.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System;
@@ -36,7 +38,7 @@ namespace CQRS.API
         {
 
             services.AddControllers();
-            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CQRS.API", Version = "v1" });
@@ -50,10 +52,15 @@ namespace CQRS.API
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            services.Configure<CqrsDatabaseSettings>(Configuration.GetSection(nameof(CqrsDatabaseSettings)));
+            services.AddSingleton<ICqrsDatabaseSettings>(x => x.GetRequiredService<IOptions<CqrsDatabaseSettings>>().Value);
+
             //DependencyInjection ve Automapper gibi yapılar configurations içerisine extension yazılarak proje daha modüler bir yapı haline getiriliyor.
             services.AddDependencyInjectionSetup();
             services.AddAutoMapperSetup();
 
+
+            //services.AddSingleton<MongoRepository<CreatedOrderDto>>();
         }
 
 

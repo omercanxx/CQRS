@@ -77,3 +77,15 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Identit
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.Sinks.MSSqlServer.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\DnsClient.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\MongoDB.Bson.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\SharpCompress.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.API\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll

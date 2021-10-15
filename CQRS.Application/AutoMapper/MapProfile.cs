@@ -12,6 +12,8 @@ using CQRS.Domain.Dtos.CampaignDtos;
 using CQRS.Domain.Dtos.CourseDtos;
 using CQRS.Domain.Dtos.OrderDtos;
 using CQRS.Domain.Dtos.UserDtos;
+using CQRS.Domain.MongoDtos.Orders;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,7 @@ namespace CQRS.Application.AutoMapper
     {
         public MapProfile()
         {
+            var xx = ObjectId.GenerateNewId();
             #region Dtos
             CreateMap<Campaign, CampaignDto>();
             CreateMap<Course, CourseDto>();
@@ -47,6 +50,12 @@ namespace CQRS.Application.AutoMapper
             CreateMap<UserCreateRequest, UserCreateCommand>();
             CreateMap<UserUpdateRequest, UserUpdateCommand>();
 
+            #endregion
+
+            #region MongoDtos
+
+            CreateMap<Order, CreatedOrderDto>();
+            
             #endregion
         }
     }

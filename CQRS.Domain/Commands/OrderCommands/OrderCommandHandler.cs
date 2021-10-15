@@ -1,8 +1,11 @@
-﻿using CQRS.Core;
+﻿using AutoMapper;
+using CQRS.Core;
 using CQRS.Core.Entities;
 using CQRS.Core.Interfaces;
+using CQRS.Domain.MongoDtos.Orders;
 using CQRS.Infrastructure;
 using MediatR;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +19,15 @@ namespace CQRS.Domain.Commands.OrderCommands
                                        IRequestHandler<OrderUpdateCommand, CommandResult>,
                                        IRequestHandler<OrderDeleteCommand, CommandResult>
     {
+        private readonly IMapper _mapper;
         private readonly IOrderRepository _orderRepository;
-        public OrderCommandHandler(IOrderRepository orderRepository)
+        private readonly ICqrsDatabaseSettings _settings;
+        private IMongoCollection<CreatedOrderDto> _orders;
+        public OrderCommandHandler(IMapper mapper, IOrderRepository orderRepository, ICqrsDatabaseSettings settings)
         {
+            _mapper = mapper;
             _orderRepository = orderRepository;
+            _settings = settings;
         }
         public async Task<CommandResult> Handle(OrderCreateCommand command, CancellationToken cancellationToken)
         {
@@ -27,6 +35,11 @@ namespace CQRS.Domain.Commands.OrderCommands
 
             await _orderRepository.AddAsync(order);
             await _orderRepository.SaveChangesAsync();
+
+            
+            var mongoDatabase = getMongoDatabase(_settings);
+            _orders = mongoDatabase.GetCollection<CreatedOrderDto>("orders");
+            _orders.InsertOne(_mapper.Map<CreatedOrderDto>(order));
 
             //CommandResultun Id propertysine set edilen constructor ın içerisine girecektir.
             return new CommandResult(order.Id);
@@ -55,6 +68,12 @@ namespace CQRS.Domain.Commands.OrderCommands
             await _orderRepository.SaveChangesAsync();
 
             return new CommandResult(dbOrder.Id);
+        }
+        private IMongoDatabase getMongoDatabase(ICqrsDatabaseSettings settings)
+        {
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+            return database;
         }
     }
 }

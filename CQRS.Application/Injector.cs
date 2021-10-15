@@ -30,6 +30,7 @@ namespace CQRS.Application
             #region Repositories
             //Repository Dependency Injection
             services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));
+
             services.AddScoped<ICampaignRepository, CampaignRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
