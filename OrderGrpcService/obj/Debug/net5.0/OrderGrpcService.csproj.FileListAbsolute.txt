@@ -1,0 +1,6 @@
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.csproj.AssemblyReference.cache
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.AssemblyInfoInputs.cache
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.AssemblyInfo.cs
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.csproj.CoreCompileInputs.cache
+C:\Users\omer.sucu\source\repos\CQRS\OrderGrpcService\obj\Debug\net5.0\OrderGrpcService.MvcApplicationPartsAssemblyInfo.cache

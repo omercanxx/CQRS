@@ -10,11 +10,7 @@ namespace CQRS.Domain.MongoDtos.Orders
 {
     public class CreatedOrderDto
     {
-        public ObjectId Id  => ObjectId.GenerateNewId();
-        [BsonElement("UserId")]
-        public Guid UserId { get; set; }
-        [BsonElement("CourseId")]
-        public Guid CourseId { get; set; }
+        public ObjectId Id => ObjectId.GenerateNewId();
         [BsonElement("Price")]
         public decimal Price { get; set; }
     }

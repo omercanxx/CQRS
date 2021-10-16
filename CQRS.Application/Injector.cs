@@ -14,6 +14,7 @@ using CQRS.Domain.Queries.OrderQueries;
 using CQRS.Domain.Queries.UserQueries;
 using CQRS.Infrastructure.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace CQRS.Application
     {
         public static void RegisterServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<ISystemAppService, SystemAppService>();
+            
             #region Repositories
             //Repository Dependency Injection
             services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));

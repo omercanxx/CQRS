@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CQRS.Application;
 using CQRS.Application.Requests.OrderRequests;
 using CQRS.Domain.Commands.OrderCommands;
 using CQRS.Domain.Queries.OrderQueries;
@@ -22,9 +23,11 @@ namespace CQRS.API.Controllers
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= (IMediator)HttpContext.RequestServices.GetService(typeof(IMediator));
         private readonly IMapper _mapper;
-        public OrderController(IMapper mapper)
+        private readonly ISystemAppService _systemAppService;
+        public OrderController(IMapper mapper, ISystemAppService systemAppService)
         {
             _mapper = mapper;
+            _systemAppService = systemAppService;
         }
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateRequest request)
@@ -34,8 +37,8 @@ namespace CQRS.API.Controllers
             var result = validator.Validate(request);
             if (result.IsValid)
             {
-                var commandResult = await Mediator.Send(_mapper.Map<OrderCreateCommand>(request));
-                Log.Information($"{commandResult.Id} id'li kurs eklenmiştir.");
+                var commandResult = await _systemAppService.CreateOrder(request);
+                Log.Information($"{commandResult.Id} id'li sipariş eklenmiştir.");
                 return Ok();
             }
 
@@ -49,8 +52,8 @@ namespace CQRS.API.Controllers
             var result = validator.Validate(request);
             if (result.IsValid)
             {
-                var commandResult = await Mediator.Send(_mapper.Map<OrderUpdateCommand>(request));
-                Log.Information($"{commandResult.Id} id'li kurs güncellenmiştir.");
+                var commandResult = await _systemAppService.UpdateOrder(request);
+                Log.Information($"{commandResult.Id} id'li sipariş güncellenmiştir.");
                 return Ok();
             }
             
@@ -60,21 +63,22 @@ namespace CQRS.API.Controllers
         public async Task<IActionResult> GetOrderDetail(Guid id)
         {
             Log.Information("Sipariş detay servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new GetOrderDetailQuery(id)));
+            return Ok(await _systemAppService.GetOrderDetail(id));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetOrders()
         {
             Log.Information("Sipariş liste servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new GetOrdersQuery()));
+            return Ok(await _systemAppService.GetOrders());
 
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {
-            Log.Information("Sipariş silme servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new OrderDeleteCommand(id)));
+            var commandResult = await _systemAppService.DeleteOrder(id);
+            Log.Information($"{commandResult.Id} id'li sipariş silme servisi çağrılmıştır.");
+            return Ok();
         }
     }
 }

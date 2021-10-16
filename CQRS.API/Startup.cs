@@ -1,10 +1,12 @@
 ﻿using CQRS.API.Configurations;
+using CQRS.Application;
 using CQRS.Application.AutoMapper;
 using CQRS.Infrastructure;
 using CQRS.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -50,8 +52,9 @@ namespace CQRS.API
 
             Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer(Configuration.GetConnectionString("DevConnection"), "Logs").CreateLogger();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
+            services.AddMediatR(typeof(Startup));
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            
             services.Configure<CqrsDatabaseSettings>(Configuration.GetSection(nameof(CqrsDatabaseSettings)));
             services.AddSingleton<ICqrsDatabaseSettings>(x => x.GetRequiredService<IOptions<CqrsDatabaseSettings>>().Value);
 
