@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package greet;
+
+message Order {
+  int64 price = 1;
+}
+
+// The greeting service definition.
+service OrderService {
+  // Sends a greeting
+  rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse);
+}
+
+message GetOrdersRequest {}
+
+message GetOrdersResponse {
+  repeated Order orders = 1;
+}
