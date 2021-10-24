@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Domain.Dtos.OrderDtos;
-using CQRS.Domain.MongoDtos.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace GrpcServer.AutoMapper
     {
         public MapProfile()
         {
-            CreateMap<CreatedOrderDto, Order>();
+            CreateMap<MongoOrder, Order>();
             CreateMap<OrderDto, Order>();
         }
     }

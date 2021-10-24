@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj": {}
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
         "projectName": "CQRS.Core",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
         "projectName": "CQRS.RepositoryTest",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -96,8 +96,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
               }
             }
           }

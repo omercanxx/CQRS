@@ -1,5 +1,5 @@
-﻿using CQRS.Application.Requests.CourseRequests;
-using CQRS.Domain.Dtos.CourseDtos;
+﻿using CQRS.Application.Requests.ProductRequests;
+using CQRS.Domain.Dtos.ProductDtos;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System;
 using System.Collections.Generic;
@@ -70,7 +70,7 @@ namespace IntegrationTest
             responseGetAll.EnsureSuccessStatusCode();
 
             var courseListData = await responseGetAll.Content.ReadAsStringAsync();
-            var courseList = JsonSerializer.Deserialize<List<CourseDto>>(courseListData);
+            var courseList = JsonSerializer.Deserialize<List<ProductDto>>(courseListData);
 
             Assert.NotEmpty(courseList);
             Assert.NotNull(courseList);

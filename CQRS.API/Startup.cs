@@ -48,12 +48,9 @@ namespace CQRS.API
 
             //appsettings içerisindeki database connection string burada kullanılıyor.
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
-
-            Log.Logger = new LoggerConfiguration().WriteTo.MSSqlServer(Configuration.GetConnectionString("DevConnection"), "Logs").CreateLogger();
+            options.UseNpgsql(Configuration.GetConnectionString("DevConnection")));
 
             services.AddMediatR(typeof(Startup));
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
             
             services.Configure<MongoDatabaseSettings>(Configuration.GetSection(nameof(MongoDatabaseSettings)));
             services.AddSingleton<IMongoDatabaseSettings>(x => x.GetRequiredService<IOptions<MongoDatabaseSettings>>().Value);
@@ -62,8 +59,6 @@ namespace CQRS.API
             services.AddDependencyInjectionSetup();
             services.AddAutoMapperSetup();
 
-
-            //services.AddSingleton<MongoRepository<CreatedOrderDto>>();
         }
 
 

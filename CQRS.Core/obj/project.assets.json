@@ -92,11 +92,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+      "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
       "projectName": "CQRS.Core",
-      "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+      "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
       "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\obj\\",
+      "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

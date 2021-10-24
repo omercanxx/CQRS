@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Application\\CQRS.Application.csproj": {}
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Application\\CQRS.Application.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Application\\CQRS.Application.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj",
         "projectName": "CQRS.Application",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Application\\CQRS.Application.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Application\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
         "projectName": "CQRS.Core",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -144,14 +144,14 @@
         }
       }
     },
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj",
         "projectName": "CQRS.Domain",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Domain\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -172,8 +172,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj"
               }
             }
           }
@@ -216,14 +216,14 @@
         }
       }
     },
-    "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
         "projectName": "CQRS.Infrastructure",
-        "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -244,8 +244,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
               }
             }
           }
@@ -270,11 +270,29 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
               "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.2.8, )"
             },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.13.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
             }
           },
           "imports": [

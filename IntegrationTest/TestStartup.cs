@@ -58,9 +58,9 @@ namespace IntegrationTest
 
                 context.Users.Add(user);
 
-                Course course = new Course(null, $"{i}. ürün", i * 2 + 10);
+                Product product = new Product($"{i}. ürün", i * 2 + 10);
                 
-                context.Courses.Add(course);
+                context.Products.Add(product);
 
                 context.SaveChanges();
             }

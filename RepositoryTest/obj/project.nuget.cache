@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z1IkPsmvp/fZcQxs2ZHZQYfX4+Oza0SG7A3qRCk0ZpJshSj6d4gnJc+0HvFrNqq7KkxjAZkOCihriquFxwIhzQ==",
+  "dgSpecHash": "ZQlfvOwjBlyEx6vteWe6NLphjUN9+ZswpHjqDWlY2elc45JoqtsTiLTmJ9M1gz/0ToGSG8Yz97cR43KQ+63dhA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
+  "projectFilePath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\omer.sucu\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
