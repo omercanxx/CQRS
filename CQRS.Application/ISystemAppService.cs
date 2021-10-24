@@ -1,11 +1,12 @@
 ﻿using CQRS.Application.Requests.CampaignRequests;
-using CQRS.Application.Requests.CourseRequests;
 using CQRS.Application.Requests.OrderRequests;
+using CQRS.Application.Requests.ProductRequests;
 using CQRS.Application.Requests.UserRequests;
 using CQRS.Core;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Domain.Dtos.CampaignDtos;
-using CQRS.Domain.Dtos.CourseDtos;
 using CQRS.Domain.Dtos.OrderDtos;
+using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,9 @@ namespace CQRS.Application
     public interface ISystemAppService
     {
         #region Order
-        Task<OrderDto> GetOrderDetail(Guid id);
-        Task<List<OrderDto>> GetOrders();
+        Task<MongoOrder> GetOrderDetail(string id);
+        Task<List<MongoOrder>> GetOrders();
         Task<CommandResult> CreateOrder(OrderCreateRequest request);
-        Task<CommandResult> UpdateOrder(OrderUpdateRequest request);
         Task<CommandResult> DeleteOrder(Guid id);
         #endregion
 
@@ -33,12 +33,12 @@ namespace CQRS.Application
         Task<CommandResult> DeleteCampaign(Guid id);
         #endregion
 
-        #region Course
-        Task<CourseDto> GetCourseDetail(Guid id);
-        Task<List<CourseDto>> GetCourses();
-        Task<CommandResult> CreateCourse(CourseCreateRequest request);
-        Task<CommandResult> UpdateCourse(CourseUpdateRequest request);
-        Task<CommandResult> DeleteCourse(Guid id);
+        #region Product
+        Task<ProductDto> GetProductDetail(Guid id);
+        Task<List<ProductDto>> GetProducts();
+        Task<CommandResult> CreateProduct(ProductCreateRequest request);
+        Task<CommandResult> UpdateProduct(ProductUpdateRequest request);
+        Task<CommandResult> DeleteProduct(Guid id);
         #endregion
 
         #region User

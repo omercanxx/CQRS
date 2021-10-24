@@ -9,3 +9,4 @@ C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.csproj
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\ref\CQRS.Core.dll
 C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.pdb
+C:\Users\omer.sucu\source\repos\CQRS\CQRS.Core\obj\Debug\net5.0\CQRS.Core.csproj.AssemblyReference.cache

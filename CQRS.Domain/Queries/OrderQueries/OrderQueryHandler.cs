@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Core.Interfaces;
-using CQRS.Domain.Dtos.CourseDtos;
+using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using CQRS.Domain.Dtos.OrderDtos;
 using CQRS.Infrastructure;
 using MediatR;
@@ -14,25 +15,23 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Queries.OrderQueries
 {
-    public class OrderQueryHandler : IRequestHandler<GetOrdersQuery, List<OrderDto>>,
-                                      IRequestHandler<GetOrderDetailQuery, OrderDto>
+    public class OrderQueryHandler : IRequestHandler<GetOrdersQuery, List<MongoOrder>>,
+                                      IRequestHandler<GetOrderDetailQuery, MongoOrder>
     {
-        private readonly IOrderRepository _orderRepository;
-        private readonly IMapper _mapper;
-        public OrderQueryHandler(IOrderRepository orderRepository, IMapper mapper)
+        private readonly IQueryMongoOrderRepository _orderRepository;
+        public OrderQueryHandler(IQueryMongoOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
-            _mapper = mapper;
         }
-        public async Task<OrderDto> Handle(GetOrderDetailQuery request, CancellationToken cancellationToken)
+        public async Task<MongoOrder> Handle(GetOrderDetailQuery request, CancellationToken cancellationToken)
         {
-            var dbCourse = await _orderRepository.GetByIdAsync(request.Id);
-            return _mapper.Map<OrderDto>(dbCourse);
+            var dbOrder = _orderRepository.FilterBy(x => x.OrderId == request.Id).FirstOrDefault();
+            return dbOrder;
         }
 
-        public async Task<List<OrderDto>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
+        public async Task<List<MongoOrder>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
         {
-            return _mapper.Map<List<OrderDto>>(await _orderRepository.GetAllAsync());
+            return _orderRepository.AsQueryable().ToList();
         }
     }
 }

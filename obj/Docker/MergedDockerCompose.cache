@@ -1,0 +1,18 @@
+services:
+  cqrs.api:
+    build:
+      context: C:\Users\omer.sucu\source\repos\CQRS
+      dockerfile: CQRS.API/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: https://+:443;http://+:80
+    image: cqrsapi
+    ports:
+    - target: 80
+    - target: 443
+    - published: 9229
+      target: 9229
+    volumes:
+    - C:\Users\omer.sucu\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\omer.sucu\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+version: '3.4'

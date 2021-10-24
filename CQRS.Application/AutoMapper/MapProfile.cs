@@ -1,19 +1,16 @@
 ﻿using AutoMapper;
 using CQRS.Application.Requests.CampaignRequests;
-using CQRS.Application.Requests.CourseRequests;
 using CQRS.Application.Requests.OrderRequests;
+using CQRS.Application.Requests.ProductRequests;
 using CQRS.Application.Requests.UserRequests;
 using CQRS.Core.Entities;
 using CQRS.Domain.Commands.CampaignCommands;
-using CQRS.Domain.Commands.CourseCommands;
 using CQRS.Domain.Commands.OrderCommands;
-using CQRS.Domain.Commands.UserCommand;
+using CQRS.Domain.Commands.ProductCommands;
+using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Dtos.CampaignDtos;
-using CQRS.Domain.Dtos.CourseDtos;
-using CQRS.Domain.Dtos.OrderDtos;
+using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
-using CQRS.Domain.MongoDtos.Orders;
-using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,14 +23,10 @@ namespace CQRS.Application.AutoMapper
     {
         public MapProfile()
         {
-            var xx = ObjectId.GenerateNewId();
             #region Dtos
             CreateMap<Campaign, CampaignDto>();
-            CreateMap<Course, CourseDto>();
+            CreateMap<Product, ProductDto>();
             CreateMap<User, UserDto>();
-            CreateMap<Order, OrderDto>()
-                .ForMember(x => x.Course, opt => opt.MapFrom(dest => dest.Course))
-                .ForMember(x => x.User, opt => opt.MapFrom(dest => dest.User));
             #endregion
 
             #region RequestToDomain
@@ -41,21 +34,14 @@ namespace CQRS.Application.AutoMapper
             CreateMap<CampaignCreateRequest, CampaignCreateCommand>();
             CreateMap<CampaignUpdateRequest, CampaignUpdateCommand>();
 
-            CreateMap<CourseCreateRequest, CourseCreateCommand>();
-            CreateMap<CourseUpdateRequest, CourseUpdateCommand>();
+            CreateMap<ProductCreateRequest, ProductCreateCommand>();
+            CreateMap<ProductUpdateRequest, ProductUpdateCommand>();
 
             CreateMap<OrderCreateRequest, OrderCreateCommand>();
-            CreateMap<OrderUpdateRequest, OrderUpdateCommand>();
 
             CreateMap<UserCreateRequest, UserCreateCommand>();
             CreateMap<UserUpdateRequest, UserUpdateCommand>();
 
-            #endregion
-
-            #region MongoDtos
-
-            CreateMap<Order, CreatedOrderDto>();
-            
             #endregion
         }
     }

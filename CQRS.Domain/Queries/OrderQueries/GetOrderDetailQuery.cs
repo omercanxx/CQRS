@@ -1,5 +1,4 @@
-﻿using CQRS.Domain.Dtos.CourseDtos;
-using CQRS.Domain.Dtos.OrderDtos;
+﻿using CQRS.Core.Entities.Mongo;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Queries.OrderQueries
 {
-    public class GetOrderDetailQuery : IRequest<OrderDto>
+    public class GetOrderDetailQuery : IRequest<MongoOrder>
     {
-        public GetOrderDetailQuery(Guid id)
+        public GetOrderDetailQuery(string id)
         {
             Id = id;
         }
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using CQRS.Domain.Dtos.CourseDtos;
-using CQRS.Domain.Dtos.OrderDtos;
+﻿using CQRS.Core.Entities.Mongo;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Domain.Queries.OrderQueries
 {
-    public class GetOrdersQuery : IRequest<List<OrderDto>>
+    public class GetOrdersQuery : IRequest<List<MongoOrder>>
     {
     }
 }

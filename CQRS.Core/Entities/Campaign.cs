@@ -14,11 +14,11 @@ namespace CQRS.Core.Entities
             Title = title;
             Amount = amount;
             DiscountType = discountType;
+            Product_Campaigns = new HashSet<Product_Campaign>();
         }
         public string Title { get; protected set; }
         public decimal Amount { get; protected set; }
         public DiscountTypes DiscountType { get; protected set; }
-        public virtual List<Course> Courses { get; protected set; }
         public void UpdateTitle(string title)
         {
             Title = title;
@@ -31,5 +31,6 @@ namespace CQRS.Core.Entities
         {
             DiscountType = discountType;
         }
+        public virtual ICollection<Product_Campaign> Product_Campaigns { get; protected set; }
     }
 }

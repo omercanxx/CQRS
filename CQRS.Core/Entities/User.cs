@@ -15,6 +15,8 @@ namespace CQRS.Core.Entities
             Password = password;
             Email = email;
             Birthdate = birthdate;
+            Orders = new HashSet<Order>();
+            User_Products = new HashSet<User_Product>();
         }
         public string Password { get; protected set; }
         public string Email { get; protected set; }
@@ -23,6 +25,7 @@ namespace CQRS.Core.Entities
         public string Fullname => $"{Name} {Surname}";
         public DateTime Birthdate { get; protected set; }
         public virtual ICollection<Order> Orders { get; protected set; }
+        public virtual ICollection<User_Product> User_Products { get; protected set; }
         public void UpdateEmail(string email)
         {
             Email = email;

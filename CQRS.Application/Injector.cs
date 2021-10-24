@@ -1,26 +1,28 @@
 ﻿using CQRS.Core;
-using CQRS.Core.Interfaces;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Domain.Commands.CampaignCommands;
-using CQRS.Domain.Commands.CourseCommands;
+using CQRS.Domain.Commands.ProductCommands;
 using CQRS.Domain.Commands.OrderCommands;
-using CQRS.Domain.Commands.UserCommand;
+using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Dtos.CampaignDtos;
-using CQRS.Domain.Dtos.CourseDtos;
-using CQRS.Domain.Dtos.OrderDtos;
+using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
 using CQRS.Domain.Queries.CampaignQueries;
 using CQRS.Domain.Queries.CourseQueries;
 using CQRS.Domain.Queries.OrderQueries;
 using CQRS.Domain.Queries.UserQueries;
-using CQRS.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CQRS.Core.Interfaces.QueryInterfaces;
+using CQRS.Infrastructure.Repositories.QueryRepositories;
+using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
+using CQRS.Infrastructure.Repositories.CommandRepositories;
+using CQRS.Core.Interfaces.CommandInterfaces;
+using CQRS.Infrastructure.Repositories.CommandRepositories.Mongo;
+using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
+using CQRS.Infrastructure.Repositories.QueryRepositories.Mongo;
 
 namespace CQRS.Application
 {
@@ -33,12 +35,22 @@ namespace CQRS.Application
             
             #region Repositories
             //Repository Dependency Injection
-            services.AddScoped(typeof(ICustomRepository<>), typeof(CustomRepository<>));
+            services.AddScoped(typeof(IQueryRepository<>), typeof(QueryRepository<>));
+            services.AddScoped(typeof(IQueryMongoRepository<>), typeof(QueryMongoRepository<>));
+            services.AddScoped(typeof(ICommandRepository<>), typeof(CommandRepository<>));
+            services.AddScoped(typeof(ICommandMongoRepository<>), typeof(CommandMongoRepository<>));
 
-            services.AddScoped<ICampaignRepository, CampaignRepository>();
-            services.AddScoped<ICourseRepository, CourseRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IQueryCampaignRepository, QueryCampaignRepository>();
+            services.AddScoped<IQueryProductRepository, QueryProductRepository>();
+            services.AddScoped<IQueryOrderRepository, QueryOrderRepository>();
+            services.AddScoped<IQueryMongoOrderRepository, QueryMongoOrderRepository>();
+            services.AddScoped<IQueryUserRepository, QueryUserRepository>();
+
+            services.AddScoped<ICommandCampaignRepository, CommandCampaignRepository>();
+            services.AddScoped<ICommandProductRepository, CommandProductRepository>();
+            services.AddScoped<ICommandOrderRepository, CommandOrderRepository>();
+            services.AddScoped<ICommandMongoOrderRepository, CommandMongoOrderRepository>();
+            services.AddScoped<ICommandUserRepository, CommandUserRepository>();
             #endregion
 
             #region Commands
@@ -47,12 +59,11 @@ namespace CQRS.Application
             services.AddScoped<IRequestHandler<CampaignUpdateCommand, CommandResult>, CampaignCommandHandler>();
             services.AddScoped<IRequestHandler<CampaignDeleteCommand, CommandResult>, CampaignCommandHandler>();
 
-            services.AddScoped<IRequestHandler<CourseCreateCommand, CommandResult>, CourseCommandHandler>();
-            services.AddScoped<IRequestHandler<CourseUpdateCommand, CommandResult>, CourseCommandHandler>();
-            services.AddScoped<IRequestHandler<CourseDeleteCommand, CommandResult>, CourseCommandHandler>();
+            services.AddScoped<IRequestHandler<ProductCreateCommand, CommandResult>, ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<ProductUpdateCommand, CommandResult>, ProductCommandHandler>();
+            services.AddScoped<IRequestHandler<ProductDeleteCommand, CommandResult>, ProductCommandHandler>();
 
             services.AddScoped<IRequestHandler<OrderCreateCommand, CommandResult>, OrderCommandHandler>();
-            services.AddScoped<IRequestHandler<OrderUpdateCommand, CommandResult>, OrderCommandHandler>();
             services.AddScoped<IRequestHandler<OrderDeleteCommand, CommandResult>, OrderCommandHandler>();
 
             services.AddScoped<IRequestHandler<UserCreateCommand, CommandResult>, UserCommandHandler>();
@@ -66,11 +77,11 @@ namespace CQRS.Application
             services.AddScoped<IRequestHandler<GetCampaignsQuery, List<CampaignDto>>, CampaignQueryHandler>();
             services.AddScoped<IRequestHandler<GetCampaignDetailQuery, CampaignDto>, CampaignQueryHandler>();
 
-            services.AddScoped<IRequestHandler<GetCoursesQuery, List<CourseDto>>, CourseQueryHandler>();
-            services.AddScoped<IRequestHandler<GetCourseDetailQuery, CourseDto>, CourseQueryHandler>();
+            services.AddScoped<IRequestHandler<GetProductsQuery, List<ProductDto>>, ProductQueryHandler>();
+            services.AddScoped<IRequestHandler<GetProductDetailQuery, ProductDto>, ProductQueryHandler>();
 
-            services.AddScoped<IRequestHandler<GetOrdersQuery, List<OrderDto>>, OrderQueryHandler>();
-            services.AddScoped<IRequestHandler<GetOrderDetailQuery, OrderDto>, OrderQueryHandler>();
+            services.AddScoped<IRequestHandler<GetOrdersQuery, List<MongoOrder>>, OrderQueryHandler>();
+            services.AddScoped<IRequestHandler<GetOrderDetailQuery, MongoOrder>, OrderQueryHandler>();
             
             services.AddScoped<IRequestHandler<GetUsersQuery, List<UserDto>>, UserQueryHandler>();
             services.AddScoped<IRequestHandler<GetUserDetailQuery, UserDto>, UserQueryHandler>();

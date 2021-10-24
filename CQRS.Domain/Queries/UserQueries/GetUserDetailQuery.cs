@@ -1,5 +1,4 @@
-﻿using CQRS.Domain.Dtos.CourseDtos;
-using CQRS.Domain.Dtos.UserDtos;
+﻿using CQRS.Domain.Dtos.UserDtos;
 using MediatR;
 using System;
 using System.Collections.Generic;

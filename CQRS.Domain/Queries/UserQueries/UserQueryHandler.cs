@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using CQRS.Core.Interfaces;
-using CQRS.Domain.Dtos.CourseDtos;
+using CQRS.Core.Interfaces.QueryInterfaces;
 using CQRS.Domain.Dtos.UserDtos;
 using CQRS.Infrastructure;
 using MediatR;
@@ -17,9 +16,9 @@ namespace CQRS.Domain.Queries.UserQueries
     public class UserQueryHandler : IRequestHandler<GetUsersQuery, List<UserDto>>,
                                       IRequestHandler<GetUserDetailQuery, UserDto>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IQueryUserRepository _userRepository;
         private readonly IMapper _mapper;
-        public UserQueryHandler(IUserRepository userRepository, IMapper mapper)
+        public UserQueryHandler(IQueryUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;

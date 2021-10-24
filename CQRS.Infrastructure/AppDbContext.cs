@@ -13,7 +13,7 @@ namespace CQRS.Infrastructure
         }
         //Yer alan entityler burada DbSet olarak tanımlanmaktadır. Projedeki yapımız classlar tekil, tablolar ise çoğul olmak üzere tasarlanmıştır.
         public DbSet<Campaign> Campaigns { get; set; }
-        public DbSet<Course> Courses { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
     }

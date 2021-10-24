@@ -8,28 +8,13 @@ namespace CQRS.Core.Entities
 {
     public class Order : BaseEntity
     {
-        public Order(Guid userId, Guid courseId, decimal price)
+        public Order(Guid userId)
         {
             UserId = userId;
-            CourseId = courseId;
-            Price = price;
+            Order_Products = new HashSet<Order_Product>();
         }
         public Guid UserId { get; protected set; }
-        public Guid CourseId { get; protected set; }
-        public decimal Price { get; protected set; }
         public virtual User User { get; protected set; }
-        public virtual Course Course { get; protected set; }
-        public void UpdateUser(Guid userId)
-        {
-            UserId = userId;
-        }
-        public void UpdateCourse(Guid courseId)
-        {
-            CourseId = courseId;
-        }
-        public void UpdatePrice(decimal price)
-        {
-            Price = price;
-        }
+        public virtual ICollection<Order_Product> Order_Products { get; protected set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CQRS.Core;
 using CQRS.Core.Entities;
 using CQRS.Core.Interfaces;
+using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Infrastructure;
 using MediatR;
 using System;
@@ -16,8 +17,8 @@ namespace CQRS.Domain.Commands.CampaignCommands
                                        IRequestHandler<CampaignUpdateCommand, CommandResult>,
                                        IRequestHandler<CampaignDeleteCommand, CommandResult>
     {
-        private readonly ICampaignRepository _campaignRepository;
-        public CampaignCommandHandler(ICampaignRepository campaignRepository)
+        private readonly ICommandCampaignRepository _campaignRepository;
+        public CampaignCommandHandler(ICommandCampaignRepository campaignRepository)
         {
             _campaignRepository = campaignRepository;
         }
@@ -28,8 +29,7 @@ namespace CQRS.Domain.Commands.CampaignCommands
             await _campaignRepository.AddAsync(campaign);
             await _campaignRepository.SaveChangesAsync();
 
-            //CommandResultun Title propertysine set edilen constructor ın içerisine girecektir.
-            return new CommandResult(campaign.Title);
+            return new CommandResult(campaign.Id);
         }
 
         public async Task<CommandResult> Handle(CampaignUpdateCommand command, CancellationToken cancellationToken)
@@ -51,7 +51,7 @@ namespace CQRS.Domain.Commands.CampaignCommands
         {
             var dbCampaign = await _campaignRepository.GetByIdAsync(command.Id);
 
-            _campaignRepository.Deactivate(dbCampaign);
+            await _campaignRepository.RemoveAsync(dbCampaign);
             await _campaignRepository.SaveChangesAsync();
 
             return new CommandResult(dbCampaign.Id);

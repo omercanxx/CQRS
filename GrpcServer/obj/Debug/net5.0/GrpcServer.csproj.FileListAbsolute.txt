@@ -102,3 +102,4 @@ C:\Users\omer.sucu\source\repos\CQRS\GrpcServer\bin\Debug\net5.0\runtimes\win\li
 C:\Users\omer.sucu\source\repos\CQRS\GrpcServer\bin\Debug\net5.0\CQRS.API.dll
 C:\Users\omer.sucu\source\repos\CQRS\GrpcServer\bin\Debug\net5.0\CQRS.API.pdb
 C:\Users\omer.sucu\source\repos\CQRS\GrpcServer\obj\Debug\net5.0\GrpcServer.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\omer.sucu\source\repos\CQRS\GrpcServer\bin\Debug\net5.0\RabbitMQ.Client.dll

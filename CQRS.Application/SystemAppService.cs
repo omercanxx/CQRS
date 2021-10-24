@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using CQRS.Application.Requests.CampaignRequests;
-using CQRS.Application.Requests.CourseRequests;
 using CQRS.Application.Requests.OrderRequests;
+using CQRS.Application.Requests.ProductRequests;
 using CQRS.Application.Requests.UserRequests;
 using CQRS.Core;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Domain.Commands.CampaignCommands;
-using CQRS.Domain.Commands.CourseCommands;
 using CQRS.Domain.Commands.OrderCommands;
-using CQRS.Domain.Commands.UserCommand;
+using CQRS.Domain.Commands.ProductCommands;
+using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Dtos.CampaignDtos;
-using CQRS.Domain.Dtos.CourseDtos;
 using CQRS.Domain.Dtos.OrderDtos;
+using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
 using CQRS.Domain.Queries.CampaignQueries;
 using CQRS.Domain.Queries.CourseQueries;
@@ -39,21 +40,18 @@ namespace CQRS.Application
             Mediator = _mediator ??= (IMediator)_httpContextAccessor.HttpContext.RequestServices.GetService(typeof(IMediator));
         }
         #region Order
-        public async Task<List<OrderDto>> GetOrders()
+        public async Task<List<MongoOrder>> GetOrders()
         {
             return await _mediator.Send(new GetOrdersQuery());
         }
-        public async Task<OrderDto> GetOrderDetail(Guid id)
+        public async Task<MongoOrder> GetOrderDetail(string id)
         {
             return await _mediator.Send(new GetOrderDetailQuery(id));
         }
         public async Task<CommandResult> CreateOrder(OrderCreateRequest request)
         {
-            return await Mediator.Send(_mapper.Map<OrderCreateCommand>(request));
-        }
-        public async Task<CommandResult> UpdateOrder(OrderUpdateRequest request)
-        {
-            return await Mediator.Send(_mapper.Map<OrderUpdateCommand>(request));
+            CommandResult commandResult =  await Mediator.Send(_mapper.Map<OrderCreateCommand>(request));
+            return commandResult;
         }
         public async Task<CommandResult> DeleteOrder(Guid id)
         {
@@ -85,27 +83,30 @@ namespace CQRS.Application
         }
         #endregion
 
-        #region Course
+        #region Product
 
-        public async Task<List<CourseDto>> GetCourses()
+        public async Task<List<ProductDto>> GetProducts()
         {
-            return await _mediator.Send(new GetCoursesQuery());
+            return await _mediator.Send(new GetProductsQuery());
         }
-        public async Task<CourseDto> GetCourseDetail(Guid id)
+        public async Task<ProductDto> GetProductDetail(Guid id)
         {
-            return await _mediator.Send(new GetCourseDetailQuery(id));
+            return await _mediator.Send(new GetProductDetailQuery(id));
         }
-        public async Task<CommandResult> CreateCourse(CourseCreateRequest request)
+        public async Task<CommandResult> CreateProduct(ProductCreateRequest request)
         {
-            return await Mediator.Send(_mapper.Map<CourseCreateCommand>(request));
+            CommandResult commandResult =  await Mediator.Send(_mapper.Map<ProductCreateCommand>(request));
+            RabbitMqSend send = new RabbitMqSend();
+            send.Connect(commandResult);
+            return commandResult;
         }
-        public async Task<CommandResult> UpdateCourse(CourseUpdateRequest request)
+        public async Task<CommandResult> UpdateProduct(ProductUpdateRequest request)
         {
-            return await Mediator.Send(_mapper.Map<CourseUpdateCommand>(request));
+            return await Mediator.Send(_mapper.Map<ProductUpdateCommand>(request));
         }
-        public async Task<CommandResult> DeleteCourse(Guid id)
+        public async Task<CommandResult> DeleteProduct(Guid id)
         {
-            return await _mediator.Send(new CourseDeleteCommand(id));
+            return await _mediator.Send(new ProductDeleteCommand(id));
         }
         #endregion
 

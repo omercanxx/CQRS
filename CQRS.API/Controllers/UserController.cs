@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.Requests.UserRequests;
-using CQRS.Domain.Commands.UserCommand;
+using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Queries.UserQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -30,33 +30,29 @@ namespace CQRS.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateRequest request)
         {
-            string errorMessage = null;
             var validator = new UserCreateValidator();
             var result = validator.Validate(request);
             if (result.IsValid)
             {
                 var commandResult = await Mediator.Send(_mapper.Map<UserCreateCommand>(request));
-                Log.Information($"{commandResult.Name} isimli kullanıcı eklenmiştir.");
                 return Ok();
             }
 
-            return BadRequest(errorMessage);
+            return BadRequest();
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateRequest request)
         {
-            string errorMessage = null;
             var validator = new UserUpdateValidator();
             var result = validator.Validate(request);
             if (result.IsValid)
             {
                 var commandResult = await Mediator.Send(_mapper.Map<UserUpdateCommand>(request));
-                Log.Information($"{commandResult.Name} isili kullanıcı güncellenmiştir.");
                 return Ok();
             }
 
-            return BadRequest(errorMessage);
+            return BadRequest();
         }
 
         [HttpGet("{id}")]

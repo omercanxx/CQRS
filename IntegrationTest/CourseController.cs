@@ -23,7 +23,7 @@ namespace IntegrationTest
         [Fact]
         public async Task Post_Should_Return_Fail_With_Error_Response_When_Insert_Price_Is_Empty()
         {
-            var courseRequest = new CourseCreateRequest { Title = "deneme" };
+            var courseRequest = new ProductCreateRequest { Title = "deneme" };
 
             var json = JsonSerializer.Serialize(courseRequest);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -37,7 +37,7 @@ namespace IntegrationTest
         [Fact]
         public async Task Post_Should_Return_Fail_With_Error_Response_When_Insert_Title_Has_Already()
         {
-            var courseRequest = new CourseCreateRequest { Title = "1. ürün", Price = 12 };
+            var courseRequest = new ProductCreateRequest { Title = "1. ürün", Price = 12 };
             var contentSameTitle = new StringContent(JsonSerializer.Serialize(courseRequest), Encoding.UTF8, "application/json");
             var client = _factory.CreateClient();
 
@@ -49,7 +49,7 @@ namespace IntegrationTest
         [Fact]
         public async Task Post_Should_Return_Success()
         {
-            var courseRequest = new CourseCreateRequest { Title = "deneme", Price = 10 };
+            var courseRequest = new ProductCreateRequest { Title = "deneme", Price = 10 };
 
             var json = JsonSerializer.Serialize(courseRequest);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

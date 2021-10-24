@@ -1,6 +1,7 @@
 ﻿using CQRS.Core;
 using CQRS.Core.Entities;
 using CQRS.Core.Interfaces;
+using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Infrastructure;
 using MediatR;
 using System;
@@ -10,14 +11,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CQRS.Domain.Commands.UserCommand
+namespace CQRS.Domain.Commands.UserCommands
 {
     public class UserCommandHandler : IRequestHandler<UserCreateCommand, CommandResult>,
                                       IRequestHandler<UserUpdateCommand, CommandResult>,
                                       IRequestHandler<UserDeleteCommand, CommandResult>
     {
-        private readonly IUserRepository _userRepository;
-        public UserCommandHandler(IUserRepository userRepository)
+        private readonly ICommandUserRepository _userRepository;
+        public UserCommandHandler(ICommandUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -29,8 +30,7 @@ namespace CQRS.Domain.Commands.UserCommand
             await _userRepository.AddAsync(user);
             await _userRepository.SaveChangesAsync();
 
-            //CommandResultun Name propertysine set edilen constructor ın içerisine girecektir.
-            return new CommandResult(user.Fullname);
+            return new CommandResult(user.Id);
         }
 
         public async Task<CommandResult> Handle(UserUpdateCommand command, CancellationToken cancellationToken)
@@ -46,17 +46,17 @@ namespace CQRS.Domain.Commands.UserCommand
             _userRepository.Update(dbUser);
             await _userRepository.SaveChangesAsync();
 
-            return new CommandResult(dbUser.Fullname);
+            return new CommandResult(dbUser.Id);
         }
 
         public async Task<CommandResult> Handle(UserDeleteCommand command, CancellationToken cancellationToken)
         {
             var dbUser = await _userRepository.GetByIdAsync(command.Id);
 
-            _userRepository.Deactivate(dbUser);
+            await _userRepository.RemoveAsync(dbUser);
             await _userRepository.SaveChangesAsync();
 
-            return new CommandResult(dbUser.Fullname);
+            return new CommandResult(dbUser.Id);
         }
     }
 }

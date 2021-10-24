@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jMlRrxVrfIkG4S1XhdMQM6efF5rZCUcloxAGq3Xgp6XbivRnm08VKR6TckZiNyNIgf2hvqXgwbi9784kq1mgFg==",
+  "dgSpecHash": "ZlFYhYK3Mc/eILTY/7HGNSStugGYCo9BLZ8e9AyFZYyXjYVxdEzz5IWYxr3pSbn8kie2L0//nY8n449mUIHJ+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer.sucu\\source\\repos\\CQRS\\CQRS.Core\\CQRS.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\omer.sucu\\.nuget\\packages\\mongodb.bson\\2.13.2\\mongodb.bson.2.13.2.nupkg.sha512",
+    "C:\\Users\\omer.sucu\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -38,7 +38,7 @@ namespace CQRS.API
         [Obsolete]
         public virtual void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddHostedService<OrderService>();
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -55,8 +55,8 @@ namespace CQRS.API
             services.AddMediatR(typeof(Startup));
             //services.AddMediatR(Assembly.GetExecutingAssembly());
             
-            services.Configure<CqrsDatabaseSettings>(Configuration.GetSection(nameof(CqrsDatabaseSettings)));
-            services.AddSingleton<ICqrsDatabaseSettings>(x => x.GetRequiredService<IOptions<CqrsDatabaseSettings>>().Value);
+            services.Configure<MongoDatabaseSettings>(Configuration.GetSection(nameof(MongoDatabaseSettings)));
+            services.AddSingleton<IMongoDatabaseSettings>(x => x.GetRequiredService<IOptions<MongoDatabaseSettings>>().Value);
 
             //DependencyInjection ve Automapper gibi yapılar configurations içerisine extension yazılarak proje daha modüler bir yapı haline getiriliyor.
             services.AddDependencyInjectionSetup();

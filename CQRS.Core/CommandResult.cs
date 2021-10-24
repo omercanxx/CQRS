@@ -13,17 +13,13 @@ namespace CQRS.Core
         {
             Id = id;
         }
-        public CommandResult(string name)
+        public CommandResult(Guid id, List<ProductResult> productResults)
         {
-            Name = name;
-        }
-        public CommandResult(Guid id, string title)
-        {
-            Id = id;
-            Title = title;
+            OrderId = id;
+            ProductResults = productResults;
         }
         public Guid Id { get; set; }
-        public string Title { get; set; }
-        public string Name { get; set; }
+        public Guid OrderId { get; set; }
+        public List<ProductResult> ProductResults { get; set; }
     }
 }

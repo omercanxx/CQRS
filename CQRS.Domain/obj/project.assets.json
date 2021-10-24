@@ -1239,6 +1239,9 @@
       "CQRS.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "MongoDB.Bson": "2.13.2"
+        },
         "compile": {
           "bin/placeholder/CQRS.Core.dll": {}
         },

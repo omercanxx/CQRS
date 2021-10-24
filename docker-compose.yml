@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  cqrs.api:
+    image: ${DOCKER_REGISTRY-}cqrsapi
+    ports:
+        - 9229:9229
+    build:
+      context: .
+      dockerfile: CQRS.API/Dockerfile
