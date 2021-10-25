@@ -3,15 +3,17 @@ using System;
 using CQRS.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CQRS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211025223834_OrderCategoryAdded")]
+    partial class OrderCategoryAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +111,7 @@ namespace CQRS.Infrastructure.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Order_Campaigns");
+                    b.ToTable("Prdoduct_Campaigns");
                 });
 
             modelBuilder.Entity("CQRS.Core.Entities.Order_Product", b =>

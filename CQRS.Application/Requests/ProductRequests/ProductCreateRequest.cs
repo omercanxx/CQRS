@@ -11,7 +11,6 @@ namespace CQRS.Application.Requests.ProductRequests
 {
     public class ProductCreateRequest
     {
-        public Guid? CampaignId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public class ProductCreateValidator : AbstractValidator<ProductCreateRequest>

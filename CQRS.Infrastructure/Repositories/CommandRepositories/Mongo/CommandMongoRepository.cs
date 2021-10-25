@@ -1,4 +1,5 @@
-﻿using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
+﻿using CQRS.Core.Entities.Mongo;
+using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
 using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using MongoDB.Driver;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Infrastructure.Repositories.CommandRepositories.Mongo
 {
-    public class CommandMongoRepository<TEntity> : ICommandMongoRepository<TEntity> where TEntity : class
+    public class CommandMongoRepository<TEntity> : ICommandMongoRepository<TEntity> where TEntity : MongoBaseEntity
     {
         private readonly IMongoCollection<TEntity> _collection;
 
@@ -25,19 +26,21 @@ namespace CQRS.Infrastructure.Repositories.CommandRepositories.Mongo
             var database = client.GetDatabase(settings.DatabaseName);
             return database;
         }
-        public Task DeleteByIdAsync(string id)
+        public async Task DeleteByIdAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, entity.Id);
+            _collection.FindOneAndDelete(filter);
         }
 
-        public Task InsertOneAsync(TEntity document)
+        public Task InsertOneAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => _collection.InsertOneAsync(entity));
         }
 
-        public Task ReplaceOneAsync(TEntity document)
+        public async Task ReplaceOneAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, entity.Id);
+            await _collection.FindOneAndReplaceAsync(filter, entity);
         }
     }
 }

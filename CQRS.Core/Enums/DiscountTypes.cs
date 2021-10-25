@@ -8,7 +8,7 @@ namespace CQRS.Core.Enums
 {
     public enum DiscountTypes
     {
-        quantitative = 1,
+        Quantitative = 1,
         Percentage = 2
     }
 }

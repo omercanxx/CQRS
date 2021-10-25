@@ -1,4 +1,5 @@
 ﻿using CQRS.Core;
+using CQRS.Domain.Dtos.OrderDtos;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,15 @@ namespace CQRS.Domain.Commands.OrderCommands
 {
     public class OrderCreateCommand : IRequest<CommandResult>
     {
-        public OrderCreateCommand(Guid userId, Guid courseId, decimal price)
+        public OrderCreateCommand(Guid userId, Guid? campaignId, List<Order_ProductDto> products)
         {
             UserId = userId;
-            CourseId = courseId;
-            Price = price;
+            CampaignId = campaignId;
+            Products = products;
         }
 
         public Guid UserId { get; set; }
-        public Guid CourseId { get; set; }
-        public decimal Price { get; set; }
+        public Guid? CampaignId { get; set; }
+        public List<Order_ProductDto> Products { get; set; }
     }
 }

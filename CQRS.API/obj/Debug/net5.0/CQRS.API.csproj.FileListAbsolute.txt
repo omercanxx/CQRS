@@ -175,7 +175,6 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.Gene
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.AssemblyInfoInputs.cache
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.AssemblyInfo.cs
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.csproj.CoreCompileInputs.cache
-C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\staticwebassets\CQRS.API.StaticWebAssets.Manifest.cache
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\staticwebassets\CQRS.API.StaticWebAssets.xml
@@ -186,3 +185,4 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\ref\CQRS.API.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.pdb
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.genruntimeconfig.cache
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.MvcApplicationPartsAssemblyInfo.cs

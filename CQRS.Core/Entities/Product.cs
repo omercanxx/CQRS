@@ -14,7 +14,6 @@ namespace CQRS.Core.Entities
             Price = price;
             Order_Products = new HashSet<Order_Product>();
             User_Products = new HashSet<User_Product>();
-            Product_Campaigns = new HashSet<Product_Campaign>();
         }
         // For Unit Test
         public Product(Guid id, string title, decimal price)
@@ -27,7 +26,6 @@ namespace CQRS.Core.Entities
         public decimal Price { get; protected set; }
         public virtual ICollection<Order_Product> Order_Products { get; protected set; }
         public virtual ICollection<User_Product> User_Products { get; protected set; }
-        public virtual ICollection<Product_Campaign> Product_Campaigns { get; protected set; }
 
         public void UpdateTitle(string title)
         {

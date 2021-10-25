@@ -8,18 +8,20 @@ namespace CQRS.Core.Entities
 {
     public class Order_Product : BaseEntity
     {
-        public Order_Product(Guid orderId, Guid productId, Guid userId, string title, decimal price)
+        public Order_Product(Guid orderId, Guid productId, Guid userId, int quantity, string title, decimal price)
         {
             OrderId = orderId;
             ProductId = productId;
             UserId = userId;
             Title = title;
+            Quantity = quantity;
             Price = price;
         }
         public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
         public Guid UserId { get; set; }
         public string Title { get; protected set; }
+        public int Quantity { get; protected set; }
         public decimal Price { get; protected set; }
         public virtual Order Order { get; protected set; }
         public virtual Product Product { get; protected set; }

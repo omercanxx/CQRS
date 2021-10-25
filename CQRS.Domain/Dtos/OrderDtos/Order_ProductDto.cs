@@ -4,17 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CQRS.Core
+namespace CQRS.Domain.Dtos.OrderDtos
 {
-    public class ProductResult
+    public class Order_ProductDto
     {
-        public ProductResult(Guid id, int quantity)
-        {
-            Id = id;
-            Quantity = quantity;
-        }
         public Guid Id { get; set; }
         public int Quantity { get; set; }
-
     }
 }

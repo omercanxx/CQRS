@@ -12,7 +12,6 @@ namespace CQRS.Application.Requests.ProductRequests
     public class ProductUpdateRequest
     {
         public Guid Id { get; set; }
-        public Guid? CampaignId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public class ProductUpdateValidator : AbstractValidator<ProductUpdateRequest>
