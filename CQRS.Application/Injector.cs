@@ -50,6 +50,7 @@ namespace CQRS.Application
             services.AddScoped<ICommandProductRepository, CommandProductRepository>();
             services.AddScoped<ICommandOrderRepository, CommandOrderRepository>();
             services.AddScoped<ICommandMongoOrderRepository, CommandMongoOrderRepository>();
+            services.AddScoped<ICommandMongoProductResultRepository, CommandMongoProductResultRepository>();
             services.AddScoped<ICommandUserRepository, CommandUserRepository>();
             #endregion
 

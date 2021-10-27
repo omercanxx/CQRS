@@ -370,3 +370,11 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\obj\Debug\net5.0\Integr
 C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\obj\Debug\net5.0\ref\IntegrationTest.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\obj\Debug\net5.0\IntegrationTest.pdb
 C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\obj\Debug\net5.0\IntegrationTest.genruntimeconfig.cache
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\Automatonymous.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\GreenPipes.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\MassTransit.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\MassTransit.RabbitMqTransport.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\NewId.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\IntegrationTest\bin\Debug\net5.0\System.Text.Json.dll

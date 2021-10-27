@@ -50,7 +50,7 @@ namespace CQRS.Domain.Commands.OrderCommands
                 totalPrice += (dbProduct.Price * item.Quantity);
 
                 //Top 10 Products
-                ProductResult productResult = new ProductResult(item.Id, item.Quantity);
+                ProductResult productResult = new ProductResult(mongoProduct.ProductId, item.Quantity);
                 productResults.Add(productResult);
             }
 

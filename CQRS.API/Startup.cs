@@ -1,6 +1,7 @@
 ﻿using CQRS.API.Configurations;
 using CQRS.Application;
 using CQRS.Application.AutoMapper;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Infrastructure;
 using CQRS.Infrastructure.Repositories;
 using MediatR;
@@ -38,7 +39,23 @@ namespace CQRS.API
         [Obsolete]
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            services.AddHostedService<OrderService>();
+            //services.AddMassTransit(x =>
+            //{
+            //    x.UsingRabbitMq((context, cfg) =>
+            //    {
+            //        //Default Port: 5672
+            //        cfg.Host(Configuration["RabbitMqUrl"], "/", host =>
+            //         {
+            //             host.Username("admin");
+            //             host.Password("123456");
+            //         });
+            //    });
+
+            //});
+
+            //services.AddMassTransitHostedService();
+
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -51,7 +68,7 @@ namespace CQRS.API
             options.UseNpgsql(Configuration.GetConnectionString("DevConnection")));
 
             services.AddMediatR(typeof(Startup));
-            
+
             services.Configure<MongoDatabaseSettings>(Configuration.GetSection(nameof(MongoDatabaseSettings)));
             services.AddSingleton<IMongoDatabaseSettings>(x => x.GetRequiredService<IOptions<MongoDatabaseSettings>>().Value);
 
@@ -59,6 +76,7 @@ namespace CQRS.API
             services.AddDependencyInjectionSetup();
             services.AddAutoMapperSetup();
 
+            
         }
 
 
@@ -71,7 +89,6 @@ namespace CQRS.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CQRS.API v1"));
             }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

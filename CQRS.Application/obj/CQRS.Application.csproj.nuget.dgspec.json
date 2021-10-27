@@ -56,9 +56,17 @@
               "target": "Package",
               "version": "[10.3.3, )"
             },
-            "RabbitMQ.Client": {
+            "MassTransit": {
               "target": "Package",
-              "version": "[6.2.2, )"
+              "version": "[7.2.3, )"
+            },
+            "MassTransit.RabbitMQ": {
+              "target": "Package",
+              "version": "[7.2.3, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
