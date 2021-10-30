@@ -36,7 +36,9 @@ namespace CQRS.Domain.Commands.ProductCommands
         public async Task<CommandResult> Handle(ProductUpdateCommand command, CancellationToken cancellationToken)
         {
             var dbProduct = await _productRepository.GetByIdAsync(command.Id);
-
+            bool isDiscounted = false;
+            if (dbProduct.Price > command.Price)
+                isDiscounted = true;
             dbProduct.UpdatePrice(command.Price);
             dbProduct.UpdateTitle(command.Title);
 
@@ -45,7 +47,7 @@ namespace CQRS.Domain.Commands.ProductCommands
 
             await _productRepository.SaveChangesAsync();
 
-            return new CommandResult(dbProduct.Id);
+            return new CommandResult(dbProduct.Id.ToString(), isDiscounted);
         }
 
         public async Task<CommandResult> Handle(ProductDeleteCommand command, CancellationToken cancellationToken)

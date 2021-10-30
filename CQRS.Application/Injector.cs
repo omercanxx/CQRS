@@ -26,6 +26,7 @@ using CQRS.Infrastructure.Repositories.QueryRepositories.Mongo;
 using CQRS.Application.RabbitMq.Orders;
 using CQRS.Infrastructure;
 using CQRS.Token;
+using CQRS.Application.RabbitMq.Users;
 
 namespace CQRS.Application
 {
@@ -36,7 +37,10 @@ namespace CQRS.Application
             services.AddScoped<ISystemAppService, SystemAppService>();
             services.AddHttpContextAccessor();
             services.AddScoped<IProducerOrderProductMessage, ProducerOrderProductMessage>();
+            services.AddScoped<IProducerUserProductMessage, ProducerUserProductMessage>();
+            services.AddScoped<IProducerProductMessage, ProducerProductMessage>();
             services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddScoped<ISendMail, SendMail>();
 
             #region Repositories
             //Repository Dependency Injection
@@ -61,6 +65,7 @@ namespace CQRS.Application
             #region Mongo
             services.AddScoped<IQueryMongoOrderRepository, QueryMongoOrderRepository>();
             services.AddScoped<IQueryMongoProductSaleRepository, QueryMongoProductSaleRepository>();
+            services.AddScoped<IQueryMongoUserProductRepository, QueryMongoUserProductRepository>();
 
             services.AddScoped<ICommandMongoOrderRepository, CommandMongoOrderRepository>();
             services.AddScoped<ICommandMongoProductSaleRepository, CommandMongoProductSaleRepository>();

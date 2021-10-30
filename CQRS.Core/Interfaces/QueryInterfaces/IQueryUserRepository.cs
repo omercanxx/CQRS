@@ -9,5 +9,6 @@ namespace CQRS.Core.Interfaces.QueryInterfaces
 {
     public interface IQueryUserRepository : IQueryRepository<User>
     {
+        Task<List<string>> GetEmailsByIds(List<Guid> ids);
     }
 }

@@ -26,10 +26,17 @@ namespace CQRS.Core
             UserId = userId;
             ProductId = productId;
         }
+        //Favorite Products Discount
+        public CommandResult(string productId, bool isDiscounted)
+        {
+            ProductId = productId;
+            IsDiscounted = isDiscounted;
+        }
         public Guid Id { get; set; }
         public Guid OrderId { get; set; }
         public string UserId { get; set; }
         public string ProductId { get; set; }
+        public bool IsDiscounted { get; set; }
         public List<MongoProductSale> ProductResults { get; set; }
     }
 }

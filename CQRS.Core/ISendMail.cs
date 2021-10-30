@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CQRS.Application.RabbitMq.Products
+namespace CQRS.Core
 {
-    class ProducerFavoriteProductMessage
+    public interface ISendMail
     {
+        void Send(string email, string subject, string body);
     }
 }

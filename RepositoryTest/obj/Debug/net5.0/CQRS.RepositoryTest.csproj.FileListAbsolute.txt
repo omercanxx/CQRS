@@ -235,3 +235,4 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\Microso
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll

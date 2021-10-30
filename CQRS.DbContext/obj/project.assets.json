@@ -1587,6 +1587,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.3",
+          "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
           "Microsoft.Extensions.Identity.Stores": "5.0.11",
           "MongoDB.Bson": "2.13.2",
           "MongoDB.Driver": "2.13.2"

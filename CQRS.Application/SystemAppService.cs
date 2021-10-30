@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CQRS.Token;
+using CQRS.Application.RabbitMq.Users;
 
 namespace CQRS.Application
 {
@@ -38,8 +39,10 @@ namespace CQRS.Application
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IOptions<RabbitMqConfiguration> _rabbitMqOptions;
         private readonly IProducerOrderProductMessage _producerOrderProductMessage;
+        private readonly IProducerUserProductMessage _producerUserProductMessage;
+        private readonly IProducerProductMessage _producerProductMessage;
 
-        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper, ITokenGenerator tokenGenerator, IOptions<RabbitMqConfiguration> rabbitMqOptions, IProducerOrderProductMessage producerOrderProductMessage)
+        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper, ITokenGenerator tokenGenerator, IOptions<RabbitMqConfiguration> rabbitMqOptions, IProducerOrderProductMessage producerOrderProductMessage, IProducerUserProductMessage producerUserProductMessage, IProducerProductMessage producerProductMessage)
         {
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
@@ -47,6 +50,8 @@ namespace CQRS.Application
             _tokenGenerator = tokenGenerator;
             _rabbitMqOptions = rabbitMqOptions;
             _producerOrderProductMessage = producerOrderProductMessage;
+            _producerUserProductMessage = producerUserProductMessage;
+            _producerProductMessage = producerProductMessage;
         }
         #region Order
         public async Task<List<MongoOrder>> GetOrders()
@@ -110,12 +115,15 @@ namespace CQRS.Application
         }
         public async Task<CommandResult> CreateProduct(ProductCreateRequest request)
         {
-            CommandResult commandResult = await Mediator.Send(_mapper.Map<ProductCreateCommand>(request));
-            return commandResult;
+            return await Mediator.Send(_mapper.Map<ProductCreateCommand>(request));
         }
         public async Task<CommandResult> UpdateProduct(ProductUpdateRequest request)
         {
-            return await Mediator.Send(_mapper.Map<ProductUpdateCommand>(request));
+            var commandResult = await Mediator.Send(_mapper.Map<ProductUpdateCommand>(request));
+            if (commandResult.IsDiscounted)
+                _producerProductMessage.SendProductMessage(commandResult.ProductId);
+
+            return commandResult;
         }
         public async Task<CommandResult> DeleteProduct(Guid id)
         {
@@ -164,10 +172,10 @@ namespace CQRS.Application
         public async Task<CommandResult> InsertUserProductItem(UserProductItemInsertRequest request)
         {
             var commandResult =  await Mediator.Send(_mapper.Map<UserProductItemInsertCommand>(request));
-            var producer = new ProducerOrderProductMessage(_rabbitMqOptions);
             MongoUserProduct userProduct = new MongoUserProduct(commandResult.UserId, commandResult.ProductId, 1);
+            
+            _producerUserProductMessage.SendUserProductMessage(userProduct);
 
-            producer.SendOrderMessage(commandResult.ProductResults);
             return commandResult;
         }
         #endregion

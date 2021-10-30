@@ -13,9 +13,9 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CQRS.Application.RabbitMq.Products
+namespace CQRS.Application.RabbitMq.Users
 {
-    public class ConsumerFavoriteProductMessage : BackgroundService
+    public class ConsumerUserProductMessage : BackgroundService
     {
         private readonly string _hostname;
         private readonly string _password;
@@ -24,7 +24,7 @@ namespace CQRS.Application.RabbitMq.Products
         private IModel _channel;
 
         private readonly ICommandMongoUserProductRepository _userProductRepository;
-        public ConsumerFavoriteProductMessage(IOptions<RabbitMqConfiguration> rabbitMqOptions, IServiceProvider serviceProvider)
+        public ConsumerUserProductMessage(IOptions<RabbitMqConfiguration> rabbitMqOptions, IServiceProvider serviceProvider)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
@@ -41,7 +41,7 @@ namespace CQRS.Application.RabbitMq.Products
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue: "favorite-product-queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+            _channel.QueueDeclare(queue: "user-product-queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             return base.StartAsync(cancellationToken);
         }
@@ -64,7 +64,7 @@ namespace CQRS.Application.RabbitMq.Products
                 }
 
             };
-            _channel.BasicConsume("favorite-product-queue", false, consumer);
+            _channel.BasicConsume("user-product-queue", false, consumer);
 
         }
     }

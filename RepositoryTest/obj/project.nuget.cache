@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "38SJmVa+gle/m0bo0SlgSV8xEdopA7Vo3dsNXRK8QOVSxHSWGMjFbdNnO+nSfosxIc9WyZozoEtio3VnEIesgg==",
+  "dgSpecHash": "5xtv0qZKImPwLD1ZkiUUnRD3WPfHG3ItngMO2e56Un2xR+a+7JPWjirMYUh6A3OCREGxpuC4OR4KE0UHREvcUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\RepositoryTest\\CQRS.RepositoryTest.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.identity.core\\5.0.11\\microsoft.extensions.identity.core.5.0.11.nupkg.sha512",

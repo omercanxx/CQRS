@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yIytcBOU3FB3vqra1kfmNlHCHtblxumN8gRBllRjsfOrDjp3wf3mcjuwKqf6egVjlBqHY4ZmLyle1HzTdW6f0A==",
+  "dgSpecHash": "WH3V3TgdPmGC+LXo7UW4lE/VD0eApAnu28QVb1LJgN3Jd8MTW27TI0/6t3r6mEVoSOmZvOJqeoJf8Zw2oid2MA==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,7 @@
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.2.0\\microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.2.0\\microsoft.extensions.configuration.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\omer.sucu\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",

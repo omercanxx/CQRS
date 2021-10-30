@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uOoNY6BT23qfK8aMGnUXe3SHMlykaCg7BCqM6pHAnGEYWC7v62J70nkYb2avuS1wXZM00URR7RXjtBNaWJ+EnQ==",
+  "dgSpecHash": "TBAJYAS1B3kyMHH0rNIIMDTLTcl03YVskDexA5SngrUFabmEziEZgiVhLvQe5PqBhgVwR9eNRLMqwDaEdihyGw==",
   "success": true,
   "projectFilePath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj",
   "expectedPackageFiles": [
