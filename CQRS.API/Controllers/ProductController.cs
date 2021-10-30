@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application;
 using CQRS.Application.Requests.ProductRequests;
-using CQRS.Domain.Commands.ProductCommands;
-using CQRS.Domain.Queries.CourseQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +57,11 @@ namespace CQRS.API.Controllers
         public async Task<IActionResult> GetProducts()
         {
             return Ok(await _systemAppService.GetProducts());
+        }
+        [HttpGet("TopTen")]
+        public async Task<IActionResult> GetTopTenProducts()
+        {
+            return Ok(await _systemAppService.GetTopTenProducts());
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)

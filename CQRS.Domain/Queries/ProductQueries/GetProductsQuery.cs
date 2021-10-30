@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CQRS.Domain.Queries.CourseQueries
+namespace CQRS.Domain.Queries.ProductQueries
 {
     public class GetProductsQuery : IRequest<List<ProductDto>>
     {

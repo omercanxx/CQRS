@@ -262,6 +262,10 @@
             "MongoDB.Bson": {
               "target": "Package",
               "version": "[2.13.2, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.13.2, )"
             }
           },
           "imports": [

@@ -31,7 +31,7 @@ namespace CQRS.Domain.Queries.OrderQueries
 
         public async Task<List<MongoOrder>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
         {
-            return _orderRepository.AsQueryable().ToList();
+            return await _orderRepository.GetAll();
         }
     }
 }

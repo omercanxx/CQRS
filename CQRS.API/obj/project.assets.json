@@ -3048,7 +3048,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MongoDB.Bson": "2.13.2"
+          "MongoDB.Bson": "2.13.2",
+          "MongoDB.Driver": "2.13.2"
         },
         "compile": {
           "bin/placeholder/CQRS.Core.dll": {}

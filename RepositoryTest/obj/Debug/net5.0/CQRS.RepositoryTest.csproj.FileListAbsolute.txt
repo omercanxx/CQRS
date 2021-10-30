@@ -209,3 +209,14 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\CQRS.Co
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\CQRS.Core.pdb
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\obj\Debug\net5.0\CQRS.RepositoryTest.csproj.CopyComplete
 C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\obj\Debug\net5.0\CQRS.RepositoryTest.genruntimeconfig.cache
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\DnsClient.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\SharpCompress.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\omer.sucu\Documents\GitHub\CQRS\RepositoryTest\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll

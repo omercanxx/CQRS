@@ -1,5 +1,7 @@
 ﻿using CQRS.API.Configurations;
 using CQRS.Application;
+using CQRS.Application.RabbitMq;
+using CQRS.Application.RabbitMq.Orders;
 using CQRS.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +33,9 @@ namespace GrpcServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var rabbitConfig = Configuration.GetSection("rabbit");
+            services.Configure<RabbitMqConfiguration>(rabbitConfig);
+            
             services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));
 

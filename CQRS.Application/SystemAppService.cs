@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Application.RabbitMq;
+using CQRS.Application.RabbitMq.Orders;
 using CQRS.Application.Requests.CampaignRequests;
 using CQRS.Application.Requests.OrderRequests;
 using CQRS.Application.Requests.ProductRequests;
@@ -15,17 +16,14 @@ using CQRS.Domain.Dtos.OrderDtos;
 using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
 using CQRS.Domain.Queries.CampaignQueries;
-using CQRS.Domain.Queries.CourseQueries;
+using CQRS.Domain.Queries.ProductQueries;
 using CQRS.Domain.Queries.OrderQueries;
 using CQRS.Domain.Queries.UserQueries;
-using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CQRS.Application
@@ -36,14 +34,16 @@ namespace CQRS.Application
         private IMediator _mediator;
         protected IMediator Mediator;
         private readonly IMapper _mapper;
+        private readonly IOptions<RabbitMqConfiguration> _rabbitMqOptions;
+        private readonly IProducerOrderProductMessage _producerOrderProductMessage;
 
-        //private readonly ISendEndpointProvider _sendEndpointProvider;
-        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper/*, ISendEndpointProvider sendEndpointProvider*/)
+        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper, IOptions<RabbitMqConfiguration> rabbitMqOptions, IProducerOrderProductMessage producerOrderProductMessage)
         {
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
             Mediator = _mediator ??= (IMediator)_httpContextAccessor.HttpContext.RequestServices.GetService(typeof(IMediator));
-            //_sendEndpointProvider = sendEndpointProvider;
+            _rabbitMqOptions = rabbitMqOptions;
+            _producerOrderProductMessage = producerOrderProductMessage;
         }
         #region Order
         public async Task<List<MongoOrder>> GetOrders()
@@ -56,15 +56,9 @@ namespace CQRS.Application
         }
         public async Task<CommandResult> CreateOrder(OrderCreateRequest request)
         {
-            //CommandResult commandResult =  await Mediator.Send(_mapper.Map<OrderCreateCommand>(request));
-
-            //// var sendEndpoint =await  _sendEndpointProvider.GetSendEndpoint(new Uri("queue:product-service"));
-            //// await sendEndpoint.Send<List<MongoProductResult>>(_mapper.Map<List<MongoProduct>>(commandResult.ProductResults));
-            //return commandResult;
-
             CommandResult commandResult = await Mediator.Send(_mapper.Map<OrderCreateCommand>(request));
-            var producer = new Producer(_mapper.Map<List<MongoProductResult>>(commandResult.ProductResults));
-            await producer.Produce();
+            _producerOrderProductMessage.SendOrderMessage(commandResult.ProductResults);
+            
             return commandResult;
         }
         public async Task<CommandResult> DeleteOrder(Guid id)
@@ -103,13 +97,17 @@ namespace CQRS.Application
         {
             return await _mediator.Send(new GetProductsQuery());
         }
+        public async Task<List<MongoProductResultDto>> GetTopTenProducts()
+        {
+            return await _mediator.Send(new GetTopTenProductsQuery());
+        }
         public async Task<ProductDto> GetProductDetail(Guid id)
         {
             return await _mediator.Send(new GetProductDetailQuery(id));
         }
         public async Task<CommandResult> CreateProduct(ProductCreateRequest request)
         {
-            CommandResult commandResult =  await Mediator.Send(_mapper.Map<ProductCreateCommand>(request));
+            CommandResult commandResult = await Mediator.Send(_mapper.Map<ProductCreateCommand>(request));
             return commandResult;
         }
         public async Task<CommandResult> UpdateProduct(ProductUpdateRequest request)
@@ -143,6 +141,22 @@ namespace CQRS.Application
         public async Task<CommandResult> DeleteUser(Guid id)
         {
             return await _mediator.Send(new UserDeleteCommand(id));
+        }
+        #endregion
+
+        #region User Product List
+        public async Task<CommandResult> CreateUserProduct(UserProductCreateRequest request)
+        {
+            return await Mediator.Send(_mapper.Map<UserProductCreateCommand>(request));
+        }
+        public async Task<CommandResult> InsertUserProductItem(UserProductItemInsertRequest request)
+        {
+            var commandResult =  await Mediator.Send(_mapper.Map<UserProductItemInsertCommand>(request));
+            var producer = new ProducerOrderProductMessage(_rabbitMqOptions);
+            MongoUserProduct userProduct = new MongoUserProduct(commandResult.UserId, commandResult.ProductId, 1);
+
+            producer.SendOrderMessage(commandResult.ProductResults);
+            return commandResult;
         }
         #endregion
     }

@@ -20,10 +20,10 @@ namespace GrpcServer
         }
         public override async Task<GetOrdersResponse> GetOrders(GetOrdersRequest request, ServerCallContext context)
         {
-            var dbOrders = await _systemAppService.GetOrders();
+            var dbTopTenProducts = await _systemAppService.GetTopTenProducts();
 
             GetOrdersResponse response = new GetOrdersResponse();
-            response.Orders.AddRange(_mapper.Map<List<Order>>(dbOrders));
+            response.Orders.AddRange(_mapper.Map<List<Order>>(dbTopTenProducts));
             return response;
         }
     }

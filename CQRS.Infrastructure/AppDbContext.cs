@@ -19,5 +19,6 @@ namespace CQRS.Infrastructure
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<User_Product> User_Products { get; set; }
+        public DbSet<User_ProductItem> User_ProductItems { get; set; }
     }
 }

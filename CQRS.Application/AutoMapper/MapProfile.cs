@@ -32,6 +32,9 @@ namespace CQRS.Application.AutoMapper
 
             CreateMap<ProductResult, MongoProductResult>()
                 .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id));
+
+
+            CreateMap<MongoProductResult, MongoProductResultDto>();
             #endregion
 
             #region RequestToDomain
@@ -46,6 +49,10 @@ namespace CQRS.Application.AutoMapper
 
             CreateMap<UserCreateRequest, UserCreateCommand>();
             CreateMap<UserUpdateRequest, UserUpdateCommand>();
+
+            CreateMap<UserProductCreateRequest, UserProductCreateCommand>();
+            CreateMap<UserProductItemInsertRequest, UserProductItemInsertCommand>();
+
 
             #endregion
         }

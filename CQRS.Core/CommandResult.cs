@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CQRS.Core.Entities.Mongo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +14,22 @@ namespace CQRS.Core
         {
             Id = id;
         }
-        public CommandResult(Guid id, List<ProductResult> productResults)
+        //Top 10 Sales
+        public CommandResult(Guid id, List<MongoProductResult> productResults)
         {
             OrderId = id;
             ProductResults = productResults;
         }
+        //Top 10 Favorite Products
+        public CommandResult(string userId, string productId)
+        {
+            UserId = userId;
+            ProductId = productId;
+        }
         public Guid Id { get; set; }
         public Guid OrderId { get; set; }
-        public List<ProductResult> ProductResults { get; set; }
+        public string UserId { get; set; }
+        public string ProductId { get; set; }
+        public List<MongoProductResult> ProductResults { get; set; }
     }
 }

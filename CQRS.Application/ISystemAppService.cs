@@ -36,6 +36,7 @@ namespace CQRS.Application
         #region Product
         Task<ProductDto> GetProductDetail(Guid id);
         Task<List<ProductDto>> GetProducts();
+        Task<List<MongoProductResultDto>> GetTopTenProducts();
         Task<CommandResult> CreateProduct(ProductCreateRequest request);
         Task<CommandResult> UpdateProduct(ProductUpdateRequest request);
         Task<CommandResult> DeleteProduct(Guid id);
@@ -47,6 +48,11 @@ namespace CQRS.Application
         Task<CommandResult> CreateUser(UserCreateRequest request);
         Task<CommandResult> UpdateUser(UserUpdateRequest request);
         Task<CommandResult> DeleteUser(Guid id);
+        #endregion
+
+        #region User Product List
+        Task<CommandResult> CreateUserProduct(UserProductCreateRequest request);
+        Task<CommandResult> InsertUserProductItem(UserProductItemInsertRequest request);
         #endregion
     }
 }

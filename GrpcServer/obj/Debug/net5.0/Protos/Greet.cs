@@ -24,15 +24,16 @@ namespace GrpcServer {
     static GreetReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChJQcm90b3MvZ3JlZXQucHJvdG8SBWdyZWV0IhYKBU9yZGVyEg0KBXByaWNl",
-            "GAEgASgDIhIKEEdldE9yZGVyc1JlcXVlc3QiMQoRR2V0T3JkZXJzUmVzcG9u",
-            "c2USHAoGb3JkZXJzGAEgAygLMgwuZ3JlZXQuT3JkZXIyTgoMT3JkZXJTZXJ2",
-            "aWNlEj4KCUdldE9yZGVycxIXLmdyZWV0LkdldE9yZGVyc1JlcXVlc3QaGC5n",
-            "cmVldC5HZXRPcmRlcnNSZXNwb25zZUINqgIKR3JwY1NlcnZlcmIGcHJvdG8z"));
+            "ChJQcm90b3MvZ3JlZXQucHJvdG8SBWdyZWV0IiwKBU9yZGVyEhEKCXByb2R1",
+            "Y3RJZBgBIAEoCRIQCghxdWFudGl0eRgCIAEoAyISChBHZXRPcmRlcnNSZXF1",
+            "ZXN0IjEKEUdldE9yZGVyc1Jlc3BvbnNlEhwKBm9yZGVycxgBIAMoCzIMLmdy",
+            "ZWV0Lk9yZGVyMk4KDE9yZGVyU2VydmljZRI+CglHZXRPcmRlcnMSFy5ncmVl",
+            "dC5HZXRPcmRlcnNSZXF1ZXN0GhguZ3JlZXQuR2V0T3JkZXJzUmVzcG9uc2VC",
+            "DaoCCkdycGNTZXJ2ZXJiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServer.Order), global::GrpcServer.Order.Parser, new[]{ "Price" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServer.Order), global::GrpcServer.Order.Parser, new[]{ "ProductId", "Quantity" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServer.GetOrdersRequest), global::GrpcServer.GetOrdersRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GrpcServer.GetOrdersResponse), global::GrpcServer.GetOrdersResponse.Parser, new[]{ "Orders" }, null, null, null, null)
           }));
@@ -70,7 +71,8 @@ namespace GrpcServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Order(Order other) : this() {
-      price_ = other.price_;
+      productId_ = other.productId_;
+      quantity_ = other.quantity_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -79,14 +81,25 @@ namespace GrpcServer {
       return new Order(this);
     }
 
-    /// <summary>Field number for the "price" field.</summary>
-    public const int PriceFieldNumber = 1;
-    private long price_;
+    /// <summary>Field number for the "productId" field.</summary>
+    public const int ProductIdFieldNumber = 1;
+    private string productId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public long Price {
-      get { return price_; }
+    public string ProductId {
+      get { return productId_; }
       set {
-        price_ = value;
+        productId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "quantity" field.</summary>
+    public const int QuantityFieldNumber = 2;
+    private long quantity_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Quantity {
+      get { return quantity_; }
+      set {
+        quantity_ = value;
       }
     }
 
@@ -103,14 +116,16 @@ namespace GrpcServer {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Price != other.Price) return false;
+      if (ProductId != other.ProductId) return false;
+      if (Quantity != other.Quantity) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Price != 0L) hash ^= Price.GetHashCode();
+      if (ProductId.Length != 0) hash ^= ProductId.GetHashCode();
+      if (Quantity != 0L) hash ^= Quantity.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -127,9 +142,13 @@ namespace GrpcServer {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Price != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(Price);
+      if (ProductId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(ProductId);
+      }
+      if (Quantity != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Quantity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -140,9 +159,13 @@ namespace GrpcServer {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Price != 0L) {
-        output.WriteRawTag(8);
-        output.WriteInt64(Price);
+      if (ProductId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(ProductId);
+      }
+      if (Quantity != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Quantity);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -153,8 +176,11 @@ namespace GrpcServer {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Price != 0L) {
-        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Price);
+      if (ProductId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ProductId);
+      }
+      if (Quantity != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Quantity);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -167,8 +193,11 @@ namespace GrpcServer {
       if (other == null) {
         return;
       }
-      if (other.Price != 0L) {
-        Price = other.Price;
+      if (other.ProductId.Length != 0) {
+        ProductId = other.ProductId;
+      }
+      if (other.Quantity != 0L) {
+        Quantity = other.Quantity;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -184,8 +213,12 @@ namespace GrpcServer {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            Price = input.ReadInt64();
+          case 10: {
+            ProductId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Quantity = input.ReadInt64();
             break;
           }
         }
@@ -202,8 +235,12 @@ namespace GrpcServer {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            Price = input.ReadInt64();
+          case 10: {
+            ProductId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Quantity = input.ReadInt64();
             break;
           }
         }

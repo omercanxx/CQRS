@@ -1,6 +1,9 @@
 ﻿using CQRS.API.Configurations;
 using CQRS.Application;
 using CQRS.Application.AutoMapper;
+using CQRS.Application.RabbitMq;
+using CQRS.Application.RabbitMq.Orders;
+using CQRS.Application.RabbitMq.Products;
 using CQRS.Core.Entities.Mongo;
 using CQRS.Infrastructure;
 using CQRS.Infrastructure.Repositories;
@@ -39,23 +42,11 @@ namespace CQRS.API
         [Obsolete]
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMassTransit(x =>
-            //{
-            //    x.UsingRabbitMq((context, cfg) =>
-            //    {
-            //        //Default Port: 5672
-            //        cfg.Host(Configuration["RabbitMqUrl"], "/", host =>
-            //         {
-            //             host.Username("admin");
-            //             host.Password("123456");
-            //         });
-            //    });
-
-            //});
-
-            //services.AddMassTransitHostedService();
-
-
+            services.AddHostedService<ConsumerOrderProductMessage>();
+            //services.AddSingleton<ConsumerOrderProductMessage>();
+            var rabbitConfig = Configuration.GetSection("rabbit");
+            services.Configure<RabbitMqConfiguration>(rabbitConfig);
+            
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -76,7 +67,6 @@ namespace CQRS.API
             services.AddDependencyInjectionSetup();
             services.AddAutoMapperSetup();
 
-            
         }
 
 
@@ -91,6 +81,9 @@ namespace CQRS.API
             }
             app.UseHttpsRedirection();
 
+            //var svc = app.ApplicationServices.GetService<ConsumerOrderProductMessage>();
+            //var svc2 = app.ApplicationServices.GetService<ConsumerFavoriteProductMessage>();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -99,6 +92,8 @@ namespace CQRS.API
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }

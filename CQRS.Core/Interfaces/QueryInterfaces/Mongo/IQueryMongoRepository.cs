@@ -9,7 +9,7 @@ namespace CQRS.Core.Interfaces.QueryInterfaces.Mongo
 {
     public interface IQueryMongoRepository<TEntity> where TEntity : class
     {
-        IQueryable<TEntity> AsQueryable();
+        Task<List<TEntity>> GetAll();
         IEnumerable<TEntity> FilterBy(Expression<Func<TEntity, bool>> filterExpression);
         Task<TEntity> FindByIdAsync(string id);
 

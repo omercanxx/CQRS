@@ -1,4 +1,6 @@
-﻿using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
+﻿using CQRS.Core.Entities.Mongo;
+using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Infrastructure.Repositories.QueryRepositories.Mongo
 {
-    public class QueryMongoRepository<TEntity> : IQueryMongoRepository<TEntity> where TEntity : class
+    public class QueryMongoRepository<TEntity> : IQueryMongoRepository<TEntity> where TEntity : MongoBaseEntity
     {
         private readonly IMongoCollection<TEntity> _collection;
 
@@ -24,19 +26,24 @@ namespace CQRS.Infrastructure.Repositories.QueryRepositories.Mongo
             var database = client.GetDatabase(settings.DatabaseName);
             return database;
         }
-        public IQueryable<TEntity> AsQueryable()
+        public async Task<List<TEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _collection.Find(_ => true).ToListAsync();
         }
 
         public IEnumerable<TEntity> FilterBy(Expression<Func<TEntity, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return _collection.Find(filterExpression).ToEnumerable();
         }
 
         public Task<TEntity> FindByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                var objectId = new ObjectId(id);
+                var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, objectId);
+                return _collection.Find(filter).SingleOrDefaultAsync();
+            });
         }
     }
 }

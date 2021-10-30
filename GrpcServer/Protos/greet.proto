@@ -5,7 +5,8 @@ option csharp_namespace = "GrpcServer";
 package greet;
 
 message Order {
-  int64 price = 1;
+  string productId = 1;
+  int64 quantity = 2;
 }
 
 // The greeting service definition.

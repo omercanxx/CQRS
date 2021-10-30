@@ -35,7 +35,7 @@ namespace CQRS.Domain.Commands.OrderCommands
             Order order = new Order(command.UserId);
 
             List<MongoProduct> mongoProducts = new List<MongoProduct>();
-            List<ProductResult> productResults = new List<ProductResult>();
+            List<MongoProductResult> productResults = new List<MongoProductResult>();
             decimal totalPrice = 0;
             
             foreach(var item in command.Products)
@@ -50,7 +50,7 @@ namespace CQRS.Domain.Commands.OrderCommands
                 totalPrice += (dbProduct.Price * item.Quantity);
 
                 //Top 10 Products
-                ProductResult productResult = new ProductResult(mongoProduct.ProductId, item.Quantity);
+                MongoProductResult productResult = new MongoProductResult(dbProduct.Id.ToString(), item.Quantity);
                 productResults.Add(productResult);
             }
 

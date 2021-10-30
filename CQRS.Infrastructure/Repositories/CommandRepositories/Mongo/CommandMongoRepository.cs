@@ -1,6 +1,7 @@
 ﻿using CQRS.Core.Entities.Mongo;
 using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
 using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -37,10 +38,16 @@ namespace CQRS.Infrastructure.Repositories.CommandRepositories.Mongo
             return Task.Run(() => _collection.InsertOneAsync(entity));
         }
 
-        public async Task ReplaceOneAsync(TEntity entity)
+        public async Task ReplaceOneByProductIdAsync(string productId, TEntity entity)
         {
-            var filter = Builders<TEntity>.Filter.Eq(doc => doc.Id, entity.Id);
-            await _collection.FindOneAndReplaceAsync(filter, entity);
+            await _collection.ReplaceOneAsync(
+                filter: new BsonDocument("productId", productId),
+                options: new ReplaceOptions { IsUpsert = true },
+                replacement: entity);
+        }
+        public Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression)
+        {
+            return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
         }
     }
 }

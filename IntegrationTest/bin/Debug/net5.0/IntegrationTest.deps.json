@@ -2767,7 +2767,8 @@
       },
       "CQRS.Core/1.0.0": {
         "dependencies": {
-          "MongoDB.Bson": "2.13.2"
+          "MongoDB.Bson": "2.13.2",
+          "MongoDB.Driver": "2.13.2"
         },
         "runtime": {
           "CQRS.Core.dll": {}

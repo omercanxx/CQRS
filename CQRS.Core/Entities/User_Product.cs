@@ -8,18 +8,25 @@ namespace CQRS.Core.Entities
 {
     public class User_Product : BaseEntity
     {
-        public User_Product(Guid productId, Guid userId, string name, string description)
+        public User_Product(Guid userId, string name, string description)
         {
-            ProductId = productId;
             UserId = userId;
             Name = name;
             Description = description;
+            User_ProductItems = new HashSet<User_ProductItem>();
         }
-        public Guid ProductId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid UserId { get; protected set; }
         public string Name { get; protected set; }
         public string Description { get; protected set; }
+        public void UpdateName(string name)
+        {
+            Name = name;
+        }
+        public void UpdateDescription(string description)
+        {
+            Description = description;
+        }
         public virtual User User { get; protected set; }
-        public virtual Product Product { get; protected set; }
+        public virtual ICollection<User_ProductItem> User_ProductItems { get; protected set; }
     }
 }
