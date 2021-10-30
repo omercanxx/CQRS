@@ -9,6 +9,6 @@ namespace CQRS.Application.RabbitMq.Orders
 {
     public interface IProducerOrderProductMessage
     {
-        void SendOrderMessage(List<MongoProductResult> product);
+        void SendOrderMessage(List<MongoProductSale> product);
     }
 }

@@ -3,8 +3,8 @@ using CQRS.Core.Entities;
 using CQRS.Core.Interfaces;
 using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Core.Interfaces.QueryInterfaces;
-using CQRS.Infrastructure;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 namespace CQRS.Domain.Commands.UserCommands
 {
     public class UserCommandHandler : IRequestHandler<UserCreateCommand, CommandResult>,
-                                      IRequestHandler<UserUpdateCommand, CommandResult>,
                                       IRequestHandler<UserDeleteCommand, CommandResult>,
                                       IRequestHandler<UserProductCreateCommand, CommandResult>,
                                       IRequestHandler<UserProductUpdateCommand, CommandResult>,
@@ -28,39 +27,37 @@ namespace CQRS.Domain.Commands.UserCommands
         private readonly ICommandUserProductRepository _commandUserProductRepository;
         private readonly ICommandUserProductItemRepository _commandUserProductItemRepository;
         private readonly IQueryUserProductRepository _queryUserProductRepository;
-        public UserCommandHandler(ICommandUserRepository userRepository, IQueryProductRepository productRepository,ICommandUserProductRepository commandUserProductRepository, ICommandUserProductItemRepository commandUserProductItemRepository, IQueryUserProductRepository queryUserProductRepository)
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<Role> _roleManager;
+
+        public UserCommandHandler(ICommandUserRepository userRepository, IQueryProductRepository productRepository, ICommandUserProductRepository commandUserProductRepository, ICommandUserProductItemRepository commandUserProductItemRepository, IQueryUserProductRepository queryUserProductRepository, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager)
         {
             _userRepository = userRepository;
             _productRepository = productRepository;
             _commandUserProductRepository = commandUserProductRepository;
             _commandUserProductItemRepository = commandUserProductItemRepository;
             _queryUserProductRepository = queryUserProductRepository;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
         }
         public async Task<CommandResult> Handle(UserCreateCommand command, CancellationToken cancellationToken)
         {
             // Kullanıcı password veritabanına şifrelenerek kaydedilmiştir. Encryption ve decryption işlemleri Core katmanında yapılmaktadır.
-            User user = new User(command.Name, command.Surname, command.Email, EncryptionHelper.EncryptPlainTextToCipherText(command.Password), command.Birthdate);
+            User user = new User(command.Name, command.Surname, command.Email, command.Email);
 
-            await _userRepository.AddAsync(user);
-            await _userRepository.SaveChangesAsync();
+            IdentityResult result = await _userManager.CreateAsync(user, command.Password);
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "user");
+            }
+
 
             return new CommandResult(user.Id);
         }
-        public async Task<CommandResult> Handle(UserUpdateCommand command, CancellationToken cancellationToken)
-        {
-            var dbUser = await _userRepository.GetByIdAsync(command.Id);
-
-            dbUser.UpdateEmail(command.Email);
-            dbUser.UpdateName(command.Name);
-            dbUser.UpdateSurname(command.Surname);
-            dbUser.UpdatePassword(EncryptionHelper.EncryptPlainTextToCipherText(command.Password));
-
-
-            _userRepository.Update(dbUser);
-            await _userRepository.SaveChangesAsync();
-
-            return new CommandResult(dbUser.Id);
-        }
+        
         public async Task<CommandResult> Handle(UserDeleteCommand command, CancellationToken cancellationToken)
         {
             var dbUser = await _userRepository.GetByIdAsync(command.Id);
@@ -86,7 +83,7 @@ namespace CQRS.Domain.Commands.UserCommands
 
             dbUserProduct.UpdateName(command.Name);
             dbUserProduct.UpdateDescription(command.Description);
-            
+
 
             _commandUserProductRepository.Update(dbUserProduct);
             await _commandUserProductRepository.SaveChangesAsync();
@@ -108,7 +105,7 @@ namespace CQRS.Domain.Commands.UserCommands
 
             var dbProduct = await _productRepository.GetByIdAsync(command.ProductId);
 
-            User_ProductItem userProductItem = new User_ProductItem(dbUserProduct.Id , command.ProductId, dbProduct.Title, dbProduct.Price);
+            User_ProductItem userProductItem = new User_ProductItem(dbUserProduct.Id, command.ProductId, dbProduct.Title, dbProduct.Price);
 
             dbUserProduct.User_ProductItems.Add(userProductItem);
 

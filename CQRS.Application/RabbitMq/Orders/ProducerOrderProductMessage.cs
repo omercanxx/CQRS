@@ -26,13 +26,13 @@ namespace CQRS.Application.RabbitMq.Orders
             CreateConnection();
         }
 
-        public void SendOrderMessage(List<MongoProductResult> product)
+        public void SendOrderMessage(List<MongoProductSale> product)
         {
             if (ConnectionExists())
             {
                 using (var channel = _connection.CreateModel())
                 {
-                    var queueName = "order-queue";
+                    var queueName = "product-sales-queue";
                     channel.QueueDeclare(queue: queueName, durable: true, exclusive: false, autoDelete: false, arguments: null);
 
                     var json = JsonSerializer.Serialize(product);

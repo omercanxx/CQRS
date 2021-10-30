@@ -13,6 +13,7 @@ using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Dtos.CampaignDtos;
 using CQRS.Domain.Dtos.ProductDtos;
 using CQRS.Domain.Dtos.UserDtos;
+using CQRS.Domain.Queries.UserQueries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,11 +31,7 @@ namespace CQRS.Application.AutoMapper
             CreateMap<Product, ProductDto>();
             CreateMap<User, UserDto>();
 
-            CreateMap<ProductResult, MongoProductResult>()
-                .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id));
-
-
-            CreateMap<MongoProductResult, MongoProductResultDto>();
+            CreateMap<MongoProductSale, MongoProductResultDto>();
             #endregion
 
             #region RequestToDomain
@@ -48,6 +45,7 @@ namespace CQRS.Application.AutoMapper
             CreateMap<OrderCreateRequest, OrderCreateCommand>();
 
             CreateMap<UserCreateRequest, UserCreateCommand>();
+            CreateMap<LoginRequest, AuthenticateQuery>();
             CreateMap<UserUpdateRequest, UserUpdateCommand>();
 
             CreateMap<UserProductCreateRequest, UserProductCreateCommand>();

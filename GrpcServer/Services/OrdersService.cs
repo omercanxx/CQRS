@@ -24,6 +24,7 @@ namespace GrpcServer
 
             GetOrdersResponse response = new GetOrdersResponse();
             response.Orders.AddRange(_mapper.Map<List<Order>>(dbTopTenProducts));
+
             return response;
         }
     }

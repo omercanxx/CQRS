@@ -24,13 +24,13 @@ namespace CQRS.Application.RabbitMq.Orders
         private IConnection _connection;
         private IModel _channel;
 
-        private readonly ICommandMongoProductResultRepository _productRepository;
+        private readonly ICommandMongoProductSaleRepository _productRepository;
         public ConsumerOrderProductMessage(IOptions<RabbitMqConfiguration> rabbitMqOptions, IServiceProvider serviceProvider)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
             _password = rabbitMqOptions.Value.Password;
-            _productRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ICommandMongoProductResultRepository>();
+            _productRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ICommandMongoProductSaleRepository>();
         }
         public override Task StartAsync(CancellationToken cancellationToken)
         {
@@ -42,7 +42,7 @@ namespace CQRS.Application.RabbitMq.Orders
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue: "order-queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
+            _channel.QueueDeclare(queue: "product-sales-queue", durable: true, exclusive: false, autoDelete: false, arguments: null);
 
             return base.StartAsync(cancellationToken);
         }
@@ -60,7 +60,7 @@ namespace CQRS.Application.RabbitMq.Orders
 
                 if (message != "null" && message != "" && message != null)
                 {
-                    var mongoProducts = JsonSerializer.Deserialize<List<MongoProductResult>>(message);
+                    var mongoProducts = JsonSerializer.Deserialize<List<MongoProductSale>>(message);
                     foreach (var item in mongoProducts)
                     {
                         await _productRepository.InsertOneAsync(item);
@@ -68,7 +68,7 @@ namespace CQRS.Application.RabbitMq.Orders
                 }
 
             };
-            _channel.BasicConsume("order-queue", false, consumer);
+            _channel.BasicConsume("product-sales-queue", false, consumer);
 
         }
     }

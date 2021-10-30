@@ -15,7 +15,6 @@ namespace CQRS.Application.Requests.UserRequests
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Password { get; set; }
-        public DateTime Birthdate { get; set; }
         public class UserCreateValidator : AbstractValidator<UserCreateRequest>
         {
             public UserCreateValidator()
@@ -24,7 +23,6 @@ namespace CQRS.Application.Requests.UserRequests
                 RuleFor(c => c.Name).NotEmpty().WithMessage("Lütfen ad giriniz.");
                 RuleFor(c => c.Surname).NotEmpty().WithMessage("Lütfen soyad giriniz.");
                 RuleFor(c => c.Password).NotEmpty().WithMessage("Lütfen şifre giriniz.");
-                RuleFor(c => c.Birthdate).NotEmpty().WithMessage("Lütfen doğum tarihi giriniz.");
             }
         }
     }

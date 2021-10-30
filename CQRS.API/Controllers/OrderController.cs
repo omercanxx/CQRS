@@ -4,6 +4,7 @@ using CQRS.Application.Requests.OrderRequests;
 using CQRS.Domain.Commands.OrderCommands;
 using CQRS.Domain.Queries.OrderQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -24,6 +25,7 @@ namespace CQRS.API.Controllers
         {
             _systemAppService = systemAppService;
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateRequest request)
         {

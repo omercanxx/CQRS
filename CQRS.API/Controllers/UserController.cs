@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CQRS.Application;
 using CQRS.Application.Requests.UserRequests;
 using CQRS.Domain.Commands.UserCommands;
 using CQRS.Domain.Queries.UserQueries;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static CQRS.Application.Requests.UserRequests.LoginRequest;
 using static CQRS.Application.Requests.UserRequests.UserCreateRequest;
 using static CQRS.Application.Requests.UserRequests.UserUpdateRequest;
 
@@ -21,9 +23,11 @@ namespace CQRS.API.Controllers
     {
         private IMediator _mediator;
         protected IMediator Mediator => _mediator ??= (IMediator)HttpContext.RequestServices.GetService(typeof(IMediator));
+        private readonly ISystemAppService _systemAppService;
         private readonly IMapper _mapper;
-        public UserController(IMapper mapper)
+        public UserController(ISystemAppService systemAppService, IMapper mapper)
         {
+            _systemAppService = systemAppService;
             _mapper = mapper;
         }
 
@@ -39,6 +43,11 @@ namespace CQRS.API.Controllers
             }
 
             return BadRequest();
+        }
+        [HttpPost("Auth")]
+        public async Task<IActionResult> Auth([FromBody] LoginRequest request)
+        {
+            return Ok(await _systemAppService.Authenticate(request));
         }
 
         [HttpPut]

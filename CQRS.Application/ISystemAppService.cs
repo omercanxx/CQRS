@@ -48,6 +48,7 @@ namespace CQRS.Application
         Task<CommandResult> CreateUser(UserCreateRequest request);
         Task<CommandResult> UpdateUser(UserUpdateRequest request);
         Task<CommandResult> DeleteUser(Guid id);
+        Task<string> Authenticate(LoginRequest request);
         #endregion
 
         #region User Product List

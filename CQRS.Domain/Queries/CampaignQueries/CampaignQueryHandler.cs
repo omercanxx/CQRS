@@ -2,7 +2,6 @@
 using CQRS.Core.Interfaces.QueryInterfaces;
 using CQRS.Domain.Dtos.CampaignDtos;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

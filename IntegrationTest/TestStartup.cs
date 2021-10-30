@@ -54,8 +54,7 @@ namespace IntegrationTest
         {
             for (int i = 1; i < 10; i++)
             {
-                User user = new User($"{i}. isim", $"{i}. soyisim", $"{i}. email", $"{i}{i}{i}{i}{i}{i}", DateTime.Now.AddYears(-20));
-
+                User user = new User($"{i}. isim", $"{i}. soyisim", $"{i}. email", $"{i}{i}{i}{i}{i}{i}");
                 context.Users.Add(user);
 
                 Product product = new Product($"{i}. ürün", i * 2 + 10);

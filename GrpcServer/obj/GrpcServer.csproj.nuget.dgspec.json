@@ -35,11 +35,11 @@
               "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj": {
                 "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application\\CQRS.Application.csproj"
               },
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj"
+              },
               "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
                 "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj"
-              },
-              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj"
               }
             }
           }
@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.11, )"
@@ -78,11 +82,11 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[5.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[5.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -163,8 +167,17 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
+              },
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj"
+              },
               "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
                 "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj"
+              },
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj"
               }
             }
           }
@@ -194,6 +207,18 @@
             "MassTransit.RabbitMQ": {
               "target": "Package",
               "version": "[7.2.3, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
@@ -259,6 +284,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNet.Identity.EntityFramework": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
             "MongoDB.Bson": {
               "target": "Package",
               "version": "[2.13.2, )"
@@ -266,6 +299,108 @@
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.13.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj",
+        "projectName": "CQRS.Infrastructure",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\CQRS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.DbContext\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\omer.sucu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.2.8, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.13.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
             }
           },
           "imports": [
@@ -315,8 +450,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
               }
             }
           }
@@ -338,6 +473,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             }
           },
           "imports": [
@@ -359,14 +498,14 @@
         }
       }
     },
-    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj": {
+    "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
-        "projectName": "CQRS.Infrastructure",
-        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\CQRS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj",
+        "projectName": "CQRS.Token",
+        "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\CQRS.Token.csproj",
         "packagesPath": "C:\\Users\\omer.sucu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Token\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -387,8 +526,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj": {
-                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core\\CQRS.Core.csproj"
+              "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj": {
+                "projectPath": "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain\\CQRS.Domain.csproj"
               }
             }
           }
@@ -403,39 +542,13 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Mvc.Abstractions": {
+            "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[6.14.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.Core": {
+            "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[2.2.5, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.10, )"
-            },
-            "Microsoft.NETCore.App": {
-              "target": "Package",
-              "version": "[2.2.8, )"
-            },
-            "MongoDB.Driver": {
-              "target": "Package",
-              "version": "[2.13.2, )"
-            },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[6.14.0, )"
             }
           },
           "imports": [

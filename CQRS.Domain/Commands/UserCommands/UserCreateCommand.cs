@@ -10,19 +10,16 @@ namespace CQRS.Domain.Commands.UserCommands
 {
     public class UserCreateCommand : IRequest<CommandResult>
     {
-        public UserCreateCommand(string name, string surname, string email, string password, DateTime birthdate)
+        public UserCreateCommand(string name, string surname, string email, string password)
         {
             Name = name;
             Surname = surname;
             Password = password;
             Email = email;
-            Birthdate = birthdate;
         }
         public string Password { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Fullname => $"{Name} {Surname}";
-        public DateTime Birthdate { get; set; }
     }
 }

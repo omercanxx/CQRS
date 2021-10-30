@@ -36,3 +36,5 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\obj\Debug\net5.0\CQRS.
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\obj\Debug\net5.0\CQRS.Application.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\obj\Debug\net5.0\ref\CQRS.Application.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\obj\Debug\net5.0\CQRS.Application.pdb
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\bin\Debug\net5.0\CQRS.Token.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.Application\bin\Debug\net5.0\CQRS.Token.pdb

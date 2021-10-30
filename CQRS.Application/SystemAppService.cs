@@ -25,6 +25,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CQRS.Token;
 
 namespace CQRS.Application
 {
@@ -34,14 +35,16 @@ namespace CQRS.Application
         private IMediator _mediator;
         protected IMediator Mediator;
         private readonly IMapper _mapper;
+        private readonly ITokenGenerator _tokenGenerator;
         private readonly IOptions<RabbitMqConfiguration> _rabbitMqOptions;
         private readonly IProducerOrderProductMessage _producerOrderProductMessage;
 
-        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper, IOptions<RabbitMqConfiguration> rabbitMqOptions, IProducerOrderProductMessage producerOrderProductMessage)
+        public SystemAppService(IHttpContextAccessor httpContextAccessor, IMapper mapper, ITokenGenerator tokenGenerator, IOptions<RabbitMqConfiguration> rabbitMqOptions, IProducerOrderProductMessage producerOrderProductMessage)
         {
             _httpContextAccessor = httpContextAccessor;
             _mapper = mapper;
             Mediator = _mediator ??= (IMediator)_httpContextAccessor.HttpContext.RequestServices.GetService(typeof(IMediator));
+            _tokenGenerator = tokenGenerator;
             _rabbitMqOptions = rabbitMqOptions;
             _producerOrderProductMessage = producerOrderProductMessage;
         }
@@ -141,6 +144,15 @@ namespace CQRS.Application
         public async Task<CommandResult> DeleteUser(Guid id)
         {
             return await _mediator.Send(new UserDeleteCommand(id));
+        }
+        public async Task<string> Authenticate(LoginRequest request)
+        {
+            string token = null;
+            var dbUser =  await _mediator.Send(_mapper.Map<AuthenticateQuery>(request));
+            if (dbUser != null)
+                token = _tokenGenerator.GenerateJSONWebToken(dbUser);
+
+            return token;
         }
         #endregion
 

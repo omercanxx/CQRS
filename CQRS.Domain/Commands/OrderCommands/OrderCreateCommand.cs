@@ -11,14 +11,11 @@ namespace CQRS.Domain.Commands.OrderCommands
 {
     public class OrderCreateCommand : IRequest<CommandResult>
     {
-        public OrderCreateCommand(Guid userId, Guid? campaignId, List<Order_ProductDto> products)
+        public OrderCreateCommand(Guid? campaignId, List<Order_ProductDto> products)
         {
-            UserId = userId;
             CampaignId = campaignId;
             Products = products;
         }
-
-        public Guid UserId { get; set; }
         public Guid? CampaignId { get; set; }
         public List<Order_ProductDto> Products { get; set; }
     }

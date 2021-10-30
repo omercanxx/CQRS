@@ -6,6 +6,7 @@ using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
 using CQRS.Core.Interfaces.QueryInterfaces;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -23,25 +24,30 @@ namespace CQRS.Domain.Commands.OrderCommands
         private readonly IQueryCampaignRepository _campaignRepository;
         private readonly IQueryProductRepository _productRepository;
         private readonly ICommandMongoOrderRepository _mongoOrderRepository;
-        public OrderCommandHandler(ICommandOrderRepository orderRepository, IQueryProductRepository productRepository, IQueryCampaignRepository campaignRepository, ICommandMongoOrderRepository mongoOrderRepository)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public OrderCommandHandler(ICommandOrderRepository orderRepository, IQueryProductRepository productRepository, IQueryCampaignRepository campaignRepository, ICommandMongoOrderRepository mongoOrderRepository, IHttpContextAccessor httpContextAccessor)
         {
             _orderRepository = orderRepository;
             _campaignRepository = campaignRepository;
             _productRepository = productRepository;
             _mongoOrderRepository = mongoOrderRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<CommandResult> Handle(OrderCreateCommand command, CancellationToken cancellationToken)
         {
-            Order order = new Order(command.UserId);
+            var userId = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(claim => claim.Type == "Id").Value;
+            Guid parsedUserId = Guid.Parse(userId);
+
+            Order order = new Order(parsedUserId);
 
             List<MongoProduct> mongoProducts = new List<MongoProduct>();
-            List<MongoProductResult> productResults = new List<MongoProductResult>();
+            List<MongoProductSale> productResults = new List<MongoProductSale>();
             decimal totalPrice = 0;
             
             foreach(var item in command.Products)
             {
                 var dbProduct = await _productRepository.GetByIdAsync(item.Id);
-                Order_Product orderProduct = new Order_Product(order.Id, dbProduct.Id, command.UserId, item.Quantity, dbProduct.Title, dbProduct.Price);
+                Order_Product orderProduct = new Order_Product(order.Id, dbProduct.Id, parsedUserId, item.Quantity, dbProduct.Title, dbProduct.Price);
                 order.Order_Products.Add(orderProduct);
 
                 //Mongo
@@ -50,7 +56,7 @@ namespace CQRS.Domain.Commands.OrderCommands
                 totalPrice += (dbProduct.Price * item.Quantity);
 
                 //Top 10 Products
-                MongoProductResult productResult = new MongoProductResult(dbProduct.Id.ToString(), item.Quantity);
+                MongoProductSale productResult = new MongoProductSale(dbProduct.Id.ToString(), item.Quantity);
                 productResults.Add(productResult);
             }
 
@@ -74,7 +80,7 @@ namespace CQRS.Domain.Commands.OrderCommands
             await _orderRepository.SaveChangesAsync();
 
 
-            MongoOrder mongoOrder = new MongoOrder(order.Id.ToString(), command.UserId.ToString(), totalPrice, mongoProducts);
+            MongoOrder mongoOrder = new MongoOrder(order.Id.ToString(), parsedUserId.ToString(), totalPrice, mongoProducts);
             await _mongoOrderRepository.InsertOneAsync(mongoOrder);
 
             return new CommandResult(order.Id, productResults);

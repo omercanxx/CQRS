@@ -15,7 +15,7 @@ namespace CQRS.Core
             Id = id;
         }
         //Top 10 Sales
-        public CommandResult(Guid id, List<MongoProductResult> productResults)
+        public CommandResult(Guid id, List<MongoProductSale> productResults)
         {
             OrderId = id;
             ProductResults = productResults;
@@ -30,6 +30,6 @@ namespace CQRS.Core
         public Guid OrderId { get; set; }
         public string UserId { get; set; }
         public string ProductId { get; set; }
-        public List<MongoProductResult> ProductResults { get; set; }
+        public List<MongoProductSale> ProductResults { get; set; }
     }
 }

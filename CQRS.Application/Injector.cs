@@ -24,6 +24,8 @@ using CQRS.Infrastructure.Repositories.CommandRepositories.Mongo;
 using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
 using CQRS.Infrastructure.Repositories.QueryRepositories.Mongo;
 using CQRS.Application.RabbitMq.Orders;
+using CQRS.Infrastructure;
+using CQRS.Token;
 
 namespace CQRS.Application
 {
@@ -34,6 +36,7 @@ namespace CQRS.Application
             services.AddScoped<ISystemAppService, SystemAppService>();
             services.AddHttpContextAccessor();
             services.AddScoped<IProducerOrderProductMessage, ProducerOrderProductMessage>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
 
             #region Repositories
             //Repository Dependency Injection
@@ -57,10 +60,10 @@ namespace CQRS.Application
 
             #region Mongo
             services.AddScoped<IQueryMongoOrderRepository, QueryMongoOrderRepository>();
-            services.AddScoped<IQueryMongoProductResultRepository, QueryMongoProductResultRepository>();
+            services.AddScoped<IQueryMongoProductSaleRepository, QueryMongoProductSaleRepository>();
 
             services.AddScoped<ICommandMongoOrderRepository, CommandMongoOrderRepository>();
-            services.AddScoped<ICommandMongoProductResultRepository, CommandMongoProductResultRepository>();
+            services.AddScoped<ICommandMongoProductSaleRepository, CommandMongoProductSaleRepository>();
             services.AddScoped<ICommandMongoUserProductRepository, CommandMongoUserProductRepository>();
             #endregion
 
@@ -80,7 +83,6 @@ namespace CQRS.Application
             services.AddScoped<IRequestHandler<OrderDeleteCommand, CommandResult>, OrderCommandHandler>();
 
             services.AddScoped<IRequestHandler<UserCreateCommand, CommandResult>, UserCommandHandler>();
-            services.AddScoped<IRequestHandler<UserUpdateCommand, CommandResult>, UserCommandHandler>();
             services.AddScoped<IRequestHandler<UserDeleteCommand, CommandResult>, UserCommandHandler>();
             services.AddScoped<IRequestHandler<UserProductCreateCommand, CommandResult>, UserCommandHandler>();
             services.AddScoped<IRequestHandler<UserProductDeleteCommand, CommandResult>, UserCommandHandler>();
@@ -103,6 +105,7 @@ namespace CQRS.Application
             
             services.AddScoped<IRequestHandler<GetUsersQuery, List<UserDto>>, UserQueryHandler>();
             services.AddScoped<IRequestHandler<GetUserDetailQuery, UserDto>, UserQueryHandler>();
+            services.AddScoped<IRequestHandler<AuthenticateQuery, UserDto>, UserQueryHandler>();
             #endregion
 
         }

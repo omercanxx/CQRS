@@ -4,7 +4,6 @@ using CQRS.Core.Interfaces.QueryInterfaces;
 using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using CQRS.Domain.Dtos.ProductDtos;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +18,9 @@ namespace CQRS.Domain.Queries.ProductQueries
                                       IRequestHandler<GetTopTenProductsQuery, List<MongoProductResultDto>>
     {
         private readonly IQueryProductRepository _productRepository;
-        private readonly IQueryMongoProductResultRepository _productResultRepository;
+        private readonly IQueryMongoProductSaleRepository _productResultRepository;
         private readonly IMapper _mapper;
-        public ProductQueryHandler(IQueryProductRepository productRepository, IQueryMongoProductResultRepository productResultRepository, IMapper mapper)
+        public ProductQueryHandler(IQueryProductRepository productRepository, IQueryMongoProductSaleRepository productResultRepository, IMapper mapper)
         {
             _productRepository = productRepository;
             _productResultRepository = productResultRepository; 

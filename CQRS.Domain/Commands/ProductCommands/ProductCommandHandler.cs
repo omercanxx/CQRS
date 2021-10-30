@@ -2,7 +2,6 @@
 using CQRS.Core.Entities;
 using CQRS.Core.Interfaces;
 using CQRS.Core.Interfaces.CommandInterfaces;
-using CQRS.Infrastructure;
 using MediatR;
 using System;
 using System.Collections.Generic;
