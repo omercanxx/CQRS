@@ -1,5 +1,6 @@
 ﻿using CQRS.Core.Entities.Mongo;
 using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
+using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -25,12 +26,14 @@ namespace CQRS.Application.RabbitMq.Orders
         private IModel _channel;
 
         private readonly ICommandMongoProductSaleRepository _productRepository;
+        private readonly IQueryMongoProductSaleRepository _productQueryRepository;
         public ConsumerOrderProductMessage(IOptions<RabbitMqConfiguration> rabbitMqOptions, IServiceProvider serviceProvider)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
             _password = rabbitMqOptions.Value.Password;
             _productRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ICommandMongoProductSaleRepository>();
+            _productQueryRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IQueryMongoProductSaleRepository>();
         }
         public override Task StartAsync(CancellationToken cancellationToken)
         {
@@ -63,13 +66,18 @@ namespace CQRS.Application.RabbitMq.Orders
                     var mongoProducts = JsonSerializer.Deserialize<List<MongoProductSale>>(message);
                     foreach (var item in mongoProducts)
                     {
-                        await _productRepository.InsertOneAsync(item);
+                        if (_productQueryRepository.FilterBy(x => x.ProductId == item.ProductId).Count() > 0)
+                        {
+                            var dbProduct = await _productRepository.FindOneAsync(x => x.ProductId == item.ProductId);
+                            await _productRepository.ReplaceOneByProductIdAsync(item.ProductId, dbProduct.Quantity + item.Quantity, item);
+                        }
+                        else
+                            await _productRepository.InsertOneAsync(item);
                     }
                 }
 
             };
             _channel.BasicConsume("product-sales-queue", false, consumer);
-
         }
     }
 }

@@ -38,12 +38,12 @@ namespace CQRS.Infrastructure.Repositories.CommandRepositories.Mongo
             return Task.Run(() => _collection.InsertOneAsync(entity));
         }
 
-        public async Task ReplaceOneByProductIdAsync(string productId, TEntity entity)
+        public async Task ReplaceOneByProductIdAsync(string productId, int quantity, TEntity entity)
         {
-            await _collection.ReplaceOneAsync(
-                filter: new BsonDocument("productId", productId),
-                options: new ReplaceOptions { IsUpsert = true },
-                replacement: entity);
+            var productUpdateFilter = Builders<TEntity>.Filter.Eq("ProductId", productId);
+            var update = Builders<TEntity>.Update.Set("Quantity", quantity);
+
+            _collection.UpdateOne(productUpdateFilter, update);
         }
         public Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression)
         {

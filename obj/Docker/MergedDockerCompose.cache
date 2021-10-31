@@ -4,6 +4,8 @@ services:
       context: C:\Users\omer.sucu\Documents\GitHub\CQRS
       dockerfile: CQRS.API/Dockerfile
     depends_on:
+      postgres:
+        condition: service_started
       rabbitmq:
         condition: service_started
     environment:
@@ -20,6 +22,40 @@ services:
     volumes:
     - C:\Users\omer.sucu\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
     - C:\Users\omer.sucu\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+  mongodb_container:
+    container_name: mongo_container
+    image: mongo:latest
+    ports:
+    - published: 27017
+      target: 27017
+    volumes:
+    - mongodb_data_container:/data/db:rw
+  pgadmin:
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_DEFAULT_EMAIL: admin@padmin.net
+      PGADMIN_DEFAULT_PASSWORD: admin
+    image: dpage/pgadmin4
+    ports:
+    - published: 5050
+      target: 80
+    restart: unless-stopped
+    volumes:
+    - pgadmin:/var/lib/pgadmin:rw
+  postgres:
+    container_name: postgres_container
+    environment:
+      PGDATA: /data/postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+    image: postgres
+    ports:
+    - published: 5432
+      target: 5432
+    restart: unless-stopped
+    volumes:
+    - postgres:/data/postgres:rw
   rabbitmq:
     container_name: rabbitmq
     environment:
@@ -32,3 +68,7 @@ services:
     - published: 15672
       target: 15672
 version: '3.4'
+volumes:
+  mongodb_data_container: {}
+  pgadmin: {}
+  postgres: {}

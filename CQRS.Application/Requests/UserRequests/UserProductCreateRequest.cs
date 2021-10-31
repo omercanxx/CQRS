@@ -9,14 +9,12 @@ namespace CQRS.Application.Requests.UserRequests
 {
     public class UserProductCreateRequest
     {
-        public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public class UserProductCreateValidator : AbstractValidator<UserProductCreateRequest>
         {
             public UserProductCreateValidator()
             {
-                RuleFor(c => c.UserId).NotEmpty().WithMessage("Lütfen kullanıcı id giriniz.");
                 RuleFor(c => c.Name).NotEmpty().WithMessage("Lütfen ad giriniz.");
                 RuleFor(c => c.Description).NotEmpty().WithMessage("Lütfen tanım giriniz.");
             }

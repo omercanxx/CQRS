@@ -12,7 +12,7 @@ namespace CQRS.Core.Interfaces.CommandInterfaces.Mongo
     public interface ICommandMongoRepository<TEntity> where TEntity : MongoBaseEntity
     {
         Task InsertOneAsync(TEntity entity);
-        Task ReplaceOneByProductIdAsync(string productId, TEntity entity);
+        Task ReplaceOneByProductIdAsync(string productId, int quantity, TEntity entity);
         Task DeleteByIdAsync(TEntity identity);
         Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression);
     }

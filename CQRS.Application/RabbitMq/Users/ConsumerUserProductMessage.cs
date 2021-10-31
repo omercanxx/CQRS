@@ -1,5 +1,6 @@
 ﻿using CQRS.Core.Entities.Mongo;
 using CQRS.Core.Interfaces.CommandInterfaces.Mongo;
+using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -24,12 +25,14 @@ namespace CQRS.Application.RabbitMq.Users
         private IModel _channel;
 
         private readonly ICommandMongoUserProductRepository _userProductRepository;
+        private readonly IQueryMongoUserProductRepository _userProductQueryRepository;
         public ConsumerUserProductMessage(IOptions<RabbitMqConfiguration> rabbitMqOptions, IServiceProvider serviceProvider)
         {
             _hostname = rabbitMqOptions.Value.Hostname;
             _username = rabbitMqOptions.Value.UserName;
             _password = rabbitMqOptions.Value.Password;
             _userProductRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<ICommandMongoUserProductRepository>();
+            _userProductQueryRepository = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<IQueryMongoUserProductRepository>();
         }
         public override Task StartAsync(CancellationToken cancellationToken)
         {
@@ -60,7 +63,14 @@ namespace CQRS.Application.RabbitMq.Users
                 if (message != "null" && message != "" && message != null)
                 {
                     var mongoUserProduct = JsonSerializer.Deserialize<MongoUserProduct>(message);
-                    await _userProductRepository.InsertOneAsync(mongoUserProduct);
+
+                    if (_userProductQueryRepository.FilterBy(x => x.ProductId == mongoUserProduct.ProductId).Count() > 0)
+                    {
+                        var dbProduct = await _userProductRepository.FindOneAsync(x => x.ProductId == mongoUserProduct.ProductId);
+                        await _userProductRepository.ReplaceOneByProductIdAsync(mongoUserProduct.ProductId, dbProduct.Quantity + 1, mongoUserProduct);
+                    }
+                    else
+                        await _userProductRepository.InsertOneAsync(mongoUserProduct);
                 }
 
             };

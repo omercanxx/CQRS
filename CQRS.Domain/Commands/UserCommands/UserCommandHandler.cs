@@ -1,5 +1,6 @@
 ﻿using CQRS.Core;
 using CQRS.Core.Entities;
+using CQRS.Core.Entities.Mongo;
 using CQRS.Core.Interfaces;
 using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Core.Interfaces.QueryInterfaces;
@@ -111,16 +112,14 @@ namespace CQRS.Domain.Commands.UserCommands
         }
         public async Task<CommandResult> Handle(UserProductItemInsertCommand command, CancellationToken cancellationToken)
         {
-            var dbUserProduct = await _queryUserProductRepository.FindAsyncWithUserProductItems(command.UserProductId);
+            var dbUserProduct = await _queryUserProductRepository.GetByIdAsync(command.UserProductId);
 
             var dbProduct = await _productRepository.GetByIdAsync(command.ProductId);
 
             User_ProductItem userProductItem = new User_ProductItem(dbUserProduct.Id, command.ProductId, dbProduct.Title, dbProduct.Price);
 
-            dbUserProduct.User_ProductItems.Add(userProductItem);
-
-            _commandUserProductRepository.Update(dbUserProduct);
-            await _commandUserProductRepository.SaveChangesAsync();
+            await _commandUserProductItemRepository.AddAsync(userProductItem);
+            await _commandUserProductItemRepository.SaveChangesAsync();
 
             return new CommandResult(dbUserProduct.UserId.ToString(), dbProduct.Id.ToString());
         }
