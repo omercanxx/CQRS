@@ -102,6 +102,7 @@ namespace CQRS.Application
 
             services.AddScoped<IRequestHandler<GetProductsQuery, List<ProductDto>>, ProductQueryHandler>();
             services.AddScoped<IRequestHandler<GetTopTenProductsQuery, List<MongoProductResultDto>>, ProductQueryHandler>();
+            services.AddScoped<IRequestHandler<GetFavoritesProductsQuery, List<MongoProductResultDto>>, ProductQueryHandler>();
             services.AddScoped<IRequestHandler<GetProductDetailQuery, ProductDto>, ProductQueryHandler>();
 
             services.AddScoped<IRequestHandler<GetOrdersQuery, List<MongoOrder>>, OrderQueryHandler>();

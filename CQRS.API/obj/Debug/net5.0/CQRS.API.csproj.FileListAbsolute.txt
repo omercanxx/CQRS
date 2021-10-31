@@ -205,3 +205,4 @@ C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Ext
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.API\obj\Debug\net5.0\CQRS.API.MvcApplicationPartsAssemblyInfo.cs

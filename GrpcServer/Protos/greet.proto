@@ -4,7 +4,7 @@ option csharp_namespace = "GrpcServer";
 
 package greet;
 
-message Order {
+message Product {
   string productId = 1;
   int64 quantity = 2;
 }
@@ -15,8 +15,19 @@ service OrderService {
   rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse);
 }
 
+service UserService {
+  // Sends a greeting
+  rpc GetFavorites(GetFavoritesRequest) returns (GetFavoritesResponse);
+}
+
 message GetOrdersRequest {}
 
 message GetOrdersResponse {
-  repeated Order orders = 1;
+  repeated Product products = 1;
+}
+
+message GetFavoritesRequest {}
+
+message GetFavoritesResponse {
+  repeated Product products = 1;
 }

@@ -32,6 +32,7 @@ namespace CQRS.Application.AutoMapper
             CreateMap<User, UserDto>();
 
             CreateMap<MongoProductSale, MongoProductResultDto>();
+            CreateMap<MongoUserProduct, MongoProductResultDto>();
             #endregion
 
             #region RequestToDomain

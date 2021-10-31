@@ -131,6 +131,7 @@ namespace CQRS.HandlerTest
 
             var mockproductQueryRepository = new Mock<IQueryProductRepository>();
             var mockproductSaleRepository = new Mock<IQueryMongoProductSaleRepository>();
+            var mockuserProductRepository = new Mock<IQueryMongoUserProductRepository>();
 
             // return a product by Id
             mockproductQueryRepository.Setup(mr => mr.GetByIdAsync(
@@ -139,7 +140,7 @@ namespace CQRS.HandlerTest
 
             //Act
             var query = new GetProductDetailQuery(testId);
-            var queryHandler = new ProductQueryHandler(mockproductQueryRepository.Object, mockproductSaleRepository.Object, _mapper);
+            var queryHandler = new ProductQueryHandler(mockproductQueryRepository.Object, mockproductSaleRepository.Object, mockuserProductRepository.Object, _mapper);
             var queryResult = await queryHandler.Handle(query, new System.Threading.CancellationToken());
 
             //Arrange
@@ -155,13 +156,14 @@ namespace CQRS.HandlerTest
 
             var mockproductQueryRepository = new Mock<IQueryProductRepository>();
             var mockproductSaleRepository = new Mock<IQueryMongoProductSaleRepository>();
+            var mockuserProductRepository = new Mock<IQueryMongoUserProductRepository>();
             // return products
             mockproductQueryRepository.Setup(mr => mr.GetAllAsync()).Returns(async () => products);
 
 
             //Act
             var query = new GetProductsQuery();
-            var queryHandler = new ProductQueryHandler(mockproductQueryRepository.Object, mockproductSaleRepository.Object, _mapper);
+            var queryHandler = new ProductQueryHandler(mockproductQueryRepository.Object, mockproductSaleRepository.Object, mockuserProductRepository.Object, _mapper);
             var queryResult = await queryHandler.Handle(query, new System.Threading.CancellationToken());
 
             //Arrange

@@ -23,7 +23,7 @@ namespace GrpcServer
             var dbTopTenProducts = await _systemAppService.GetTopTenProducts();
 
             GetOrdersResponse response = new GetOrdersResponse();
-            response.Orders.AddRange(_mapper.Map<List<Order>>(dbTopTenProducts));
+            response.Products.AddRange(_mapper.Map<List<Product>>(dbTopTenProducts));
 
             return response;
         }

@@ -109,6 +109,10 @@ namespace CQRS.Application
         {
             return await _mediator.Send(new GetTopTenProductsQuery());
         }
+        public async Task<List<MongoProductResultDto>> GetFavoritesProducts()
+        {
+            return await _mediator.Send(new GetFavoritesProductsQuery());
+        }
         public async Task<ProductDto> GetProductDetail(Guid id)
         {
             return await _mediator.Send(new GetProductDetailQuery(id));

@@ -28,7 +28,7 @@ namespace CQRS.API.Controllers
         {
             var validator = new ProductCreateValidator();
             var result = validator.Validate(request);
-            if(result.IsValid)
+            if (result.IsValid)
             {
                 var commandResult = await _systemAppService.CreateProduct(request);
                 return Ok(commandResult.Id);
@@ -58,11 +58,7 @@ namespace CQRS.API.Controllers
         {
             return Ok(await _systemAppService.GetProducts());
         }
-        [HttpGet("TopTen")]
-        public async Task<IActionResult> GetTopTenProducts()
-        {
-            return Ok(await _systemAppService.GetTopTenProducts());
-        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {

@@ -37,6 +37,7 @@ namespace CQRS.Application
         Task<ProductDto> GetProductDetail(Guid id);
         Task<List<ProductDto>> GetProducts();
         Task<List<MongoProductResultDto>> GetTopTenProducts();
+        Task<List<MongoProductResultDto>> GetFavoritesProducts();
         Task<CommandResult> CreateProduct(ProductCreateRequest request);
         Task<CommandResult> UpdateProduct(ProductUpdateRequest request);
         Task<CommandResult> DeleteProduct(Guid id);

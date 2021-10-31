@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CQRS.Core.Entities.Mongo;
+using CQRS.Core.Enums;
 using CQRS.Core.Interfaces;
 using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using CQRS.Domain.Dtos.OrderDtos;
@@ -29,7 +30,7 @@ namespace CQRS.Domain.Queries.OrderQueries
 
         public async Task<List<MongoOrder>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
         {
-            return await _orderRepository.GetAll();
+            return await _orderRepository.GetAll(RequestTypes.Api);
         }
     }
 }

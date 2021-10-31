@@ -2,11 +2,13 @@
 using CQRS.Application;
 using CQRS.Application.RabbitMq;
 using CQRS.Application.RabbitMq.Orders;
+using CQRS.Core.Entities;
 using CQRS.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,12 +41,13 @@ namespace GrpcServer
             services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));
 
-            
+
             //appsettings içerisindeki database connection string burada kullanılıyor.
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            options.UseNpgsql(Configuration.GetConnectionString("DevConnection")));
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-            
+
             services.AddMediatR(typeof(Startup));
             //services.AddMediatR(Assembly.GetExecutingAssembly());
 

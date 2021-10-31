@@ -20,11 +20,12 @@ namespace GrpcClient
             using var channel = GrpcChannel.ForAddress("https://localhost:8001",
         new GrpcChannelOptions { HttpHandler = httpHandler });
 
-            var client = new OrderService.OrderServiceClient(channel);
 
             while (true)
             {
-                Console.WriteLine("If you wanna get orders, say 'Y'\n If you wanna quit say 'Q'");
+                Console.WriteLine("If you wanna get orders, say '1'\n " +
+                                  "If you wanna get favorites, say '2'\n" +
+                                  "If you wanna quit say 'Q'");
 
                 string line = Console.ReadLine();
 
@@ -34,14 +35,27 @@ namespace GrpcClient
                     break;
                 }
 
-                else if (line == "Y")
+                else if (line == "1")
                 {
+                    var client = new OrderService.OrderServiceClient(channel);
                     var reply = client.GetOrders(
                         new GetOrdersRequest() { }
                     );
 
-                    Console.WriteLine("Reply: " + reply.Orders);
+                    Console.WriteLine("Reply: " + reply.Products);
                 }
+                else if (line == "2")
+                {
+                    var client = new UserService.UserServiceClient(channel);
+                    var reply = client.GetFavorites(
+                        new GetFavoritesRequest() { }
+                    );
+
+                    Console.WriteLine("Reply: " + reply.Products);
+                }
+                else
+                    Console.WriteLine("Try again please");
+                
             }
         }
     }

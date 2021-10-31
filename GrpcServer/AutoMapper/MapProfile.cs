@@ -11,7 +11,7 @@ namespace GrpcServer.AutoMapper
     {
         public MapProfile()
         {
-            CreateMap<MongoProductResultDto, Order>();
+            CreateMap<MongoProductResultDto, Product>();
         }
     }
 }

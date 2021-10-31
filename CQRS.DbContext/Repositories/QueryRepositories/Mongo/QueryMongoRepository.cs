@@ -1,4 +1,5 @@
 ﻿using CQRS.Core.Entities.Mongo;
+using CQRS.Core.Enums;
 using CQRS.Core.Interfaces.QueryInterfaces.Mongo;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -13,7 +14,7 @@ namespace CQRS.Infrastructure.Repositories.QueryRepositories.Mongo
 {
     public class QueryMongoRepository<TEntity> : IQueryMongoRepository<TEntity> where TEntity : MongoBaseEntity
     {
-        private readonly IMongoCollection<TEntity> _collection;
+        private IMongoCollection<TEntity> _collection;
 
         public QueryMongoRepository(IMongoDatabaseSettings settings)
         {
@@ -26,8 +27,15 @@ namespace CQRS.Infrastructure.Repositories.QueryRepositories.Mongo
             var database = client.GetDatabase(settings.DatabaseName);
             return database;
         }
-        public async Task<List<TEntity>> GetAll()
+        public async Task<List<TEntity>> GetAll(RequestTypes requestType)
         {
+            if(requestType == RequestTypes.gRPC)
+            {
+                var client = new MongoClient("mongodb://192.168.1.21:27017");
+                var database = client.GetDatabase("CqrsDB");
+                _collection = database.GetCollection<TEntity>(typeof(TEntity).Name);
+            }
+
             return await _collection.Find(_ => true).ToListAsync();
         }
 
