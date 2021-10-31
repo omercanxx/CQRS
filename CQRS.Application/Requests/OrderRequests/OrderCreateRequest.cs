@@ -12,7 +12,6 @@ namespace CQRS.Application.Requests.OrderRequests
 {
     public class OrderCreateRequest
     {
-        public Guid UserId { get; set; }
         public Guid? CampaignId { get; set; }
         public List<Order_ProductDto> Products { get; set; }
 
@@ -20,7 +19,6 @@ namespace CQRS.Application.Requests.OrderRequests
         {
             public OrderCreateValidator()
             {
-                RuleFor(c => c.UserId).NotEmpty().WithMessage("Lütfen kullanıcı id giriniz.");
             }
         }
     }

@@ -21,69 +21,52 @@ namespace CQRS.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IMediator _mediator;
-        protected IMediator Mediator => _mediator ??= (IMediator)HttpContext.RequestServices.GetService(typeof(IMediator));
         private readonly ISystemAppService _systemAppService;
-        private readonly IMapper _mapper;
-        public UserController(ISystemAppService systemAppService, IMapper mapper)
+        public UserController(ISystemAppService systemAppService)
         {
             _systemAppService = systemAppService;
-            _mapper = mapper;
         }
-
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateRequest request)
         {
-            var validator = new UserCreateValidator();
-            var result = validator.Validate(request);
-            if (result.IsValid)
-            {
-                var commandResult = await Mediator.Send(_mapper.Map<UserCreateCommand>(request));
-                return Ok();
-            }
-
-            return BadRequest();
+            return Ok(await _systemAppService.CreateUser(request));
         }
         [HttpPost("Auth")]
         public async Task<IActionResult> Auth([FromBody] LoginRequest request)
         {
             return Ok(await _systemAppService.Authenticate(request));
         }
-
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UserUpdateRequest request)
         {
-            var validator = new UserUpdateValidator();
-            var result = validator.Validate(request);
-            if (result.IsValid)
-            {
-                var commandResult = await Mediator.Send(_mapper.Map<UserUpdateCommand>(request));
-                return Ok();
-            }
-
-            return BadRequest();
+            return Ok(await _systemAppService.UpdateUser(request));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserDetail(Guid id)
         {
-            Log.Information("Kullanıcı detay servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new GetUserDetailQuery(id)));
+            return Ok(await _systemAppService.GetUserDetail(id));
         }
-
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            Log.Information("Kullanıcı liste servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new GetUsersQuery()));
-
+            return Ok(await _systemAppService.GetUsers());
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
-            Log.Information("Kullanıcı silme servisi çağrılmıştır.");
-            return Ok(await Mediator.Send(new UserDeleteCommand(id)));
+            return Ok(await _systemAppService.DeleteUser(id));
+        }
+        [HttpPost("/UserProduct")]
+        public async Task<IActionResult> CreateUserProduct([FromBody] UserProductCreateRequest request)
+        {
+            return Ok(await _systemAppService.CreateUserProduct(request));
+        }
+        [HttpPost("/UserProductItem")]
+        public async Task<IActionResult> InsertUserProductItem([FromBody] UserProductItemInsertRequest request)
+        {
+            return Ok(await _systemAppService.InsertUserProductItem(request));
         }
     }
 }

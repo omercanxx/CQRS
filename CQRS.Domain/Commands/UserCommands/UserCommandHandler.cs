@@ -4,6 +4,7 @@ using CQRS.Core.Interfaces;
 using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Core.Interfaces.QueryInterfaces;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,16 @@ namespace CQRS.Domain.Commands.UserCommands
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserCommandHandler(IQueryProductRepository productRepository, ICommandUserProductRepository commandUserProductRepository, ICommandUserProductItemRepository commandUserProductItemRepository, IQueryUserProductRepository queryUserProductRepository, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager)
+        public UserCommandHandler(IQueryProductRepository productRepository,
+                                  ICommandUserProductRepository commandUserProductRepository,
+                                  ICommandUserProductItemRepository commandUserProductItemRepository,
+                                  IQueryUserProductRepository queryUserProductRepository,
+                                  UserManager<User> userManager,
+                                  SignInManager<User> signInManager,
+                                  RoleManager<Role> roleManager,
+                                  IHttpContextAccessor httpContextAccessor)
         {
             _productRepository = productRepository;
             _commandUserProductRepository = commandUserProductRepository;
@@ -39,6 +48,7 @@ namespace CQRS.Domain.Commands.UserCommands
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<CommandResult> Handle(UserCreateCommand command, CancellationToken cancellationToken)
         {
@@ -66,7 +76,10 @@ namespace CQRS.Domain.Commands.UserCommands
         }
         public async Task<CommandResult> Handle(UserProductCreateCommand command, CancellationToken cancellationToken)
         {
-            User_Product userProduct = new User_Product(command.UserId, command.Name, command.Description);
+            var userId = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(claim => claim.Type == "Id").Value;
+            Guid parsedUserId = Guid.Parse(userId);
+
+            User_Product userProduct = new User_Product(parsedUserId, command.Name, command.Description);
 
             await _commandUserProductRepository.AddAsync(userProduct);
             await _commandUserProductRepository.SaveChangesAsync();
