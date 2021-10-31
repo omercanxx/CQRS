@@ -11,11 +11,18 @@ namespace CQRS.Domain.Commands.ProductCommands
 {
     public class ProductCreateCommand : IRequest<CommandResult>
     {
+        public ProductCreateCommand(Guid id,string title, decimal price)
+        {
+            Id = id;
+            Title = title;
+            Price = price;
+        }
         public ProductCreateCommand(string title, decimal price)
         {
             Title = title;
             Price = price;
         }
+        public Guid Id { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
     }

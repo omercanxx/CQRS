@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CQRS.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.API", "CQRS.API.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CQRS.API", "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.API", "CQRS.API.csproj", "0")]
 [assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CQRS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Application", "CQRS.Application.csproj", "0")]
 [assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CQRS.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Core", "CQRS.Core.csproj", "0")]
 [assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CQRS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\omer.sucu\\Documents\\GitHub\\CQRS\\CQRS.Domain", "CQRS.Domain.csproj", "0")]

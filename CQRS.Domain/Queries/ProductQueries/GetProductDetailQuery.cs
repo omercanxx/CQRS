@@ -1,4 +1,5 @@
-﻿using CQRS.Domain.Dtos.ProductDtos;
+﻿using AutoMapper;
+using CQRS.Domain.Dtos.ProductDtos;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ namespace CQRS.Domain.Queries.ProductQueries
         {
             Id = id;
         }
+        public GetProductDetailQuery(Guid id, IMapper mapper)
+        {
+            Id = id;
+            Mapper = mapper;
+        }
         public Guid Id { get; set; }
+        public IMapper Mapper { get; set; }
     }
 }

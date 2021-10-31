@@ -50,7 +50,7 @@ namespace CQRS.Domain.Commands.CampaignCommands
         {
             var dbCampaign = await _campaignRepository.GetByIdAsync(command.Id);
 
-            await _campaignRepository.RemoveAsync(dbCampaign);
+            _campaignRepository.Remove(dbCampaign);
             await _campaignRepository.SaveChangesAsync();
 
             return new CommandResult(dbCampaign.Id);

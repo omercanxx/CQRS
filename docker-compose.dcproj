@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>2bd3dc8a-3780-4fe8-9f8e-91cc1edddf78</ProjectGuid>
+    <ProjectGuid>dc7cc053-071f-4670-aa6c-f43a9bde36e9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>cqrs.api</DockerServiceName>

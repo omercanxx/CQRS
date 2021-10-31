@@ -60,7 +60,6 @@ namespace CQRS.Application
             services.AddScoped<ICommandOrderRepository, CommandOrderRepository>();
             services.AddScoped<ICommandUserProductRepository, CommandUserProductRepository>();
             services.AddScoped<ICommandUserProductItemRepository, CommandUserProductItemRepository>();
-            services.AddScoped<ICommandUserRepository, CommandUserRepository>();
 
             #region Mongo
             services.AddScoped<IQueryMongoOrderRepository, QueryMongoOrderRepository>();

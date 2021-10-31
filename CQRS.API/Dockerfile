@@ -9,9 +9,10 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["CQRS.API/CQRS.API.csproj", "CQRS.API/"]
 COPY ["CQRS.Domain/CQRS.Domain.csproj", "CQRS.Domain/"]
-COPY ["CQRS.Infrastructure/CQRS.Infrastructure.csproj", "CQRS.Infrastructure/"]
 COPY ["CQRS.Core/CQRS.Core.csproj", "CQRS.Core/"]
 COPY ["CQRS.Application/CQRS.Application.csproj", "CQRS.Application/"]
+COPY ["CQRS.Token/CQRS.Token.csproj", "CQRS.Token/"]
+COPY ["CQRS.DbContext/CQRS.Infrastructure.csproj", "CQRS.DbContext/"]
 RUN dotnet restore "CQRS.API/CQRS.API.csproj"
 COPY . .
 WORKDIR "/src/CQRS.API"

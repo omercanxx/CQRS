@@ -1,0 +1,5 @@
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.DomainTest\obj\Debug\net5.0\CQRS.DomainTest.csproj.AssemblyReference.cache
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.DomainTest\obj\Debug\net5.0\CQRS.DomainTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.DomainTest\obj\Debug\net5.0\CQRS.DomainTest.AssemblyInfoInputs.cache
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.DomainTest\obj\Debug\net5.0\CQRS.DomainTest.AssemblyInfo.cs
+C:\Users\omer.sucu\Documents\GitHub\CQRS\CQRS.DomainTest\obj\Debug\net5.0\CQRS.DomainTest.csproj.CoreCompileInputs.cache

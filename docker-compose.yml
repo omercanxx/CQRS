@@ -1,10 +1,22 @@
 version: '3.4'
 
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    ports:
+        - 5672:5672
+        - 15672:15672
+    environment:
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=123456        
+    image: rabbitmq:3-management
   cqrs.api:
     image: ${DOCKER_REGISTRY-}cqrsapi
-    ports:
-        - 9229:9229
     build:
       context: .
       dockerfile: CQRS.API/Dockerfile
+    ports:
+      - 8080:80
+      - 8001:443
+    depends_on:
+      - "rabbitmq"

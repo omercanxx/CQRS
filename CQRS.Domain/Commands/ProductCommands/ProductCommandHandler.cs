@@ -24,7 +24,13 @@ namespace CQRS.Domain.Commands.ProductCommands
         }
         public async Task<CommandResult> Handle(ProductCreateCommand command, CancellationToken cancellationToken)
         {
-            Product product = new Product(command.Title, command.Price);
+            Product product = null;
+
+            if (command.Id == Guid.Empty)
+                product = new Product(command.Title, command.Price);
+
+            else
+                product = new Product(command.Id, command.Title, command.Price);
 
             await _productRepository.AddAsync(product);
             await _productRepository.SaveChangesAsync();
@@ -54,7 +60,7 @@ namespace CQRS.Domain.Commands.ProductCommands
         {
             var dbProduct = await _productRepository.GetByIdAsync(command.Id);
 
-            await _productRepository.RemoveAsync(dbProduct);
+            _productRepository.Remove(dbProduct);
             await _productRepository.SaveChangesAsync();
 
             return new CommandResult(dbProduct.Id);

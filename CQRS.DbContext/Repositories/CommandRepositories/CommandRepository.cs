@@ -1,4 +1,5 @@
-﻿using CQRS.Core.Interfaces.CommandInterfaces;
+﻿using CQRS.Core.Entities;
+using CQRS.Core.Interfaces.CommandInterfaces;
 using CQRS.Core.Interfaces.QueryInterfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CQRS.Infrastructure.Repositories.CommandRepositories
 {
-    public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEntity : class
+    public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly AppDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
@@ -31,9 +32,9 @@ namespace CQRS.Infrastructure.Repositories.CommandRepositories
         {
             _context.Entry(entity).State = EntityState.Modified;
         }
-        public Task RemoveAsync(TEntity entity)
+        public void Remove(TEntity entity)
         {
-            throw new NotImplementedException();
+            entity.Delete();
         }
         public async Task SaveChangesAsync()
         {

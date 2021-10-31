@@ -29,7 +29,12 @@ namespace CQRS.Domain.Queries.ProductQueries
         public async Task<ProductDto> Handle(GetProductDetailQuery request, CancellationToken cancellationToken)
         {
             var dbCourse = await _productRepository.GetByIdAsync(request.Id);
-            return _mapper.Map<ProductDto>(dbCourse);
+
+            if(request.Mapper != null)
+                return request.Mapper.Map<ProductDto>(dbCourse);
+
+            else
+                return _mapper.Map<ProductDto>(dbCourse);
         }
 
         public async Task<List<ProductDto>> Handle(GetProductsQuery request, CancellationToken cancellationToken)

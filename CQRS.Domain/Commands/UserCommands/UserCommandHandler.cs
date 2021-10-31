@@ -22,7 +22,6 @@ namespace CQRS.Domain.Commands.UserCommands
                                       IRequestHandler<UserProductItemInsertCommand, CommandResult>,
                                       IRequestHandler<UserProductItemRemoveCommand, CommandResult>
     {
-        private readonly ICommandUserRepository _userRepository;
         private readonly IQueryProductRepository _productRepository;
         private readonly ICommandUserProductRepository _commandUserProductRepository;
         private readonly ICommandUserProductItemRepository _commandUserProductItemRepository;
@@ -31,9 +30,8 @@ namespace CQRS.Domain.Commands.UserCommands
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
 
-        public UserCommandHandler(ICommandUserRepository userRepository, IQueryProductRepository productRepository, ICommandUserProductRepository commandUserProductRepository, ICommandUserProductItemRepository commandUserProductItemRepository, IQueryUserProductRepository queryUserProductRepository, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager)
+        public UserCommandHandler(IQueryProductRepository productRepository, ICommandUserProductRepository commandUserProductRepository, ICommandUserProductItemRepository commandUserProductItemRepository, IQueryUserProductRepository queryUserProductRepository, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager)
         {
-            _userRepository = userRepository;
             _productRepository = productRepository;
             _commandUserProductRepository = commandUserProductRepository;
             _commandUserProductItemRepository = commandUserProductItemRepository;
@@ -60,10 +58,9 @@ namespace CQRS.Domain.Commands.UserCommands
         
         public async Task<CommandResult> Handle(UserDeleteCommand command, CancellationToken cancellationToken)
         {
-            var dbUser = await _userRepository.GetByIdAsync(command.Id);
+            var dbUser = await _userManager.FindByIdAsync(command.Id.ToString());
 
-            await _userRepository.RemoveAsync(dbUser);
-            await _userRepository.SaveChangesAsync();
+            await _userManager.DeleteAsync(dbUser);
 
             return new CommandResult(dbUser.Id);
         }
@@ -94,7 +91,7 @@ namespace CQRS.Domain.Commands.UserCommands
         {
             var dbUserProduct = await _commandUserProductRepository.GetByIdAsync(command.Id);
 
-            await _commandUserProductRepository.RemoveAsync(dbUserProduct);
+            _commandUserProductRepository.Remove(dbUserProduct);
             await _commandUserProductRepository.SaveChangesAsync();
 
             return new CommandResult(dbUserProduct.Id);
@@ -119,7 +116,7 @@ namespace CQRS.Domain.Commands.UserCommands
         {
             var dbUserProductItem = await _commandUserProductItemRepository.GetByIdAsync(command.Id);
 
-            await _commandUserProductItemRepository.RemoveAsync(dbUserProductItem);
+            _commandUserProductItemRepository.Remove(dbUserProductItem);
             await _commandUserProductItemRepository.SaveChangesAsync();
 
             return new CommandResult(dbUserProductItem.Id);

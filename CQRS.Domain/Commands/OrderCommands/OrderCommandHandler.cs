@@ -91,7 +91,7 @@ namespace CQRS.Domain.Commands.OrderCommands
         {
             var dbOrder = await _orderRepository.GetByIdAsync(command.Id);
 
-            await _orderRepository.RemoveAsync(dbOrder);
+            _orderRepository.Remove(dbOrder);
             await _orderRepository.SaveChangesAsync();
 
             return new CommandResult(dbOrder.Id);

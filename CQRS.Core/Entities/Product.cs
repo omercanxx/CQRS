@@ -35,6 +35,11 @@ namespace CQRS.Core.Entities
         {
             Price = price;
         }
+        //Unit Test
+        public void Delete()
+        {
+            IsActive = false;
+        }
     }
 }
 
